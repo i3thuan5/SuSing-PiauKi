@@ -14,7 +14,7 @@ from 本調辭典.models import 本調辭典表
 
 
 
-def 匯入教典內的詞():
+def 匯入教典內的詞性():
     for 詞物件 in 教典資料.全部資料():
         本調辭典表.objects.get_or_create(分詞=詞物件.轉音(臺灣閩南語羅馬字拼音).看分詞())
 
