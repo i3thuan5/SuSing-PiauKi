@@ -37,7 +37,7 @@ class 教典資料:
                         整理後漢字 = 文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 漢字)
                         整理後臺羅 = 文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 臺羅)
                         try:
-                            yield 整理後漢字, 整理後臺羅, tuple(釋義表[主編碼])
+                            yield 整理後漢字, 整理後臺羅, tuple(sorted(釋義表[主編碼]))
                         except KeyError:
                             pass
 
@@ -54,9 +54,9 @@ class 教典資料:
                     if 詞性 == '不標示':
                         continue
                     try:
-                        資料[主編碼].append(詞性)
+                        資料[主編碼].add(詞性)
                     except KeyError:
-                        資料[主編碼] = [詞性]
+                        資料[主編碼] = {詞性}
         return 資料
 
     @classmethod
