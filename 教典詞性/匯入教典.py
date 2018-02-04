@@ -36,8 +36,10 @@ class 教典資料:
                         臺羅 = 一音.strip()
                         整理後漢字 = 文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 漢字)
                         整理後臺羅 = 文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 臺羅)
-                        for su5sing3 in 釋義表[主編碼]:
-                            yield 整理後漢字, 整理後臺羅, su5sing3
+                        try:
+                            yield 整理後漢字, 整理後臺羅, tuple(釋義表[主編碼])
+                        except KeyError:
+                            pass
 
     @classmethod
     def _釋義表(cls):
