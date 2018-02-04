@@ -51,6 +51,8 @@ class 教典資料:
                     主編碼 = row['主編碼'].strip()
                     詞性代號 = row['詞性代號'].strip()
                     詞性 = 詞性對照表[詞性代號]
+                    if 詞性 == '不標示':
+                        continue
                     try:
                         資料[主編碼].append(詞性)
                     except KeyError:
