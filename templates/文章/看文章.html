@@ -1,0 +1,27 @@
+
+{% block 斷詞內容 %}
+	<form>
+	   <input type='text name='han'/>
+	   <input type='text name='lo' />
+	</form>
+	<table class="資料">		
+		<tr>
+			<td>漢</td>
+			{% for 物件 in 漢 %}
+				<td>{{ 物件}} </td>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>羅</td>
+			{% for 物件 in 羅 %}
+				<td>{{ 物件}} </td>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>教典詞性</td>
+			{% for 物件 in 性 %}
+					<td>{{ 物件}} </td>
+			{% endfor %}
+		</tr>
+	</table>
+{% endblock %}

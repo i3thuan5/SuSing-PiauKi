@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from 提著詞性結果.views import 查詞性
+from 提著詞性結果.views import 查詞性頁
 
 urlpatterns = [
+    path('', 查詞性頁),
+    path('su5/', 查詞性),
     path('admin/', admin.site.urls),
+    
 ]
