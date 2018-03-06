@@ -5,10 +5,6 @@ import io
 from urllib.request import urlopen
 
 
-from 臺灣言語工具.解析整理.文章粗胚 import 文章粗胚
-from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
-
-
 def 匯入教典內的詞性():
     for 詞物件 in 教典資料.全部資料():
         yield 詞物件
@@ -34,10 +30,8 @@ class 教典資料:
                     漢字 = row['詞目'].strip()
                     for 一音 in 音讀.split('/'):
                         臺羅 = 一音.strip()
-                        整理後漢字 = 文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 漢字)
-                        整理後臺羅 = 文章粗胚.建立物件語句前處理減號(臺灣閩南語羅馬字拼音, 臺羅)
                         try:
-                            yield 整理後漢字, 整理後臺羅, tuple(sorted(釋義表[主編碼]))
+                            yield 漢字, 臺羅, tuple(sorted(釋義表[主編碼]))
                         except KeyError:
                             pass
 
