@@ -1,9 +1,7 @@
 import json
 
-from django.http.response import JsonResponse, HttpResponse
+from django.http.response import JsonResponse
 from django.shortcuts import render
-from django.template import loader
-from django.template.context import RequestContext
 
 
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
@@ -22,8 +20,8 @@ def 查詞性頁(request):
         漢字 = request.GET['han']
         羅馬字 = request.GET['lo']
     except:
-        漢字 = ''
-        羅馬字 = ''
+        漢字 = '「九月颱，無人知」，'
+        羅馬字 = '“Káu-gue̍h-thai, bô lâng tsai”,'
 
     漢 = []
     羅 = []
