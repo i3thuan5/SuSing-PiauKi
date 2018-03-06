@@ -1,8 +1,11 @@
 
 {% block 斷詞內容 %}
-	<form>
-	   <input type='text name='han'/>
-	   <input type='text name='lo' />
+	<form action='.' method='get' >
+  <fieldset>
+	   <input type='text' name='han' value="{{ han }}" />
+	   <input type='text' name='lo' value="{{ lo }}" />
+	   <input type='submit' name='查' />
+  </fieldset>
 	</form>
 	<table class="資料">		
 		<tr>

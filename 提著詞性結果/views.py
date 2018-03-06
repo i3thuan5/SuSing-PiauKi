@@ -19,23 +19,26 @@ def 查詞性(request):
 
 def 查詞性頁(request):
     try:
-        漢字 = request.GET['漢字']
-        羅馬字 = request.GET['羅馬字']
+        漢字 = request.GET['han']
+        羅馬字 = request.GET['lo']
     except:
         漢字 = ''
         羅馬字 = ''
+    print(漢字, 羅馬字)
 
     漢 = []
     羅 = []
-    性=[]
+    性 = []
     for (詞漢, 詞羅, 詞性) in 查教典詞性(漢字, 羅馬字):
         漢.append(詞漢)
         羅.append(詞羅)
         性.append(', '.join(詞性))
     return render(request, '文章/看文章.html', {
-        '漢':漢,
-        '羅':羅,
-        '性':性,
+        'han': 漢字,
+        'lo': 羅馬字,
+        '漢': 漢,
+        '羅': 羅,
+        '性': 性,
     })
 
 
