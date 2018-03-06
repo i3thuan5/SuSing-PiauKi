@@ -44,6 +44,9 @@ def 查教典詞性(漢字, 羅馬字):
     with open('kiat4-ko2') as 檔案:
         for 漢, 羅, 詞性 in json.load(檔案):
             _詞性表[(漢, 羅)] = 詞性
+    with open('tso3-ji7') as 檔案:
+        for 教典造字, unicode編碼字 in json.load(檔案).items():
+            漢字 = 漢字.replace(教典造字, unicode編碼字)
 
     資料 = []
     for 詞物件 in(

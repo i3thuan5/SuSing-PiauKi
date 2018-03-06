@@ -16,4 +16,5 @@ RUN pip3 install https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7
 EXPOSE 10010
 
 COPY . .
+RUN python3 manage.py 教典造字表匯入
 RUN python3 manage.py 教典詞性匯入
