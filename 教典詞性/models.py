@@ -3,7 +3,7 @@ from 臺灣言語工具.辭典.型音辭典 import 型音辭典
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 
 
-class 本調辭典表(models.Model):
+class 本調辭典表():
     分詞 = models.CharField(
         max_length=100,
         unique=True,
