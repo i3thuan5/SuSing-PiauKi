@@ -7,7 +7,7 @@
 	   <input type='submit' name='查' />
   </fieldset>
 	</form>
-	<table class="資料">		
+	<table class="資料" border=1>		
 		<tr>
 			<td>漢</td>
 			{% for 物件 in 漢 %}
@@ -24,6 +24,26 @@
 			<td>教典詞性</td>
 			{% for 物件 in 性 %}
 					<td>{{ 物件}} </td>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>CKIP詞性</td>
+			{% for 物件 in 性 %}
+					<td> </td>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>標記詞性</td>
+			{% for 物件 in 性 %}
+					<td>						
+						<select name="carlist" form="carform">
+						  <option value="選擇詞性…">選擇詞性…</option>
+						  <option value="動">動</option>
+						  <option value="名">名</option>
+						  <option value="副">副</option>
+						  <option value="…">…</option>
+						</select>
+					 </td>
 			{% endfor %}
 		</tr>
 	</table>
