@@ -23,13 +23,19 @@
 		<tr>
 			<td>教典詞性</td>
 			{% for 物件 in 性 %}
-					<td>{{ 物件}} </td>
+				<td>{{ 物件}} </td>
 			{% endfor %}
 		</tr>
 		<tr>
-			<td>CKIP詞性</td>
-			{% for 物件 in 性 %}
-					<td> </td>
+			<td><a href="http://coct.naer.edu.tw/Segmentor/">國教院詞性</a></td>
+			{% for 物件 in 國教院詞性 %}
+				<td>{{ 物件}} </td>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td><a href="http://coct.naer.edu.tw/Segmentor/">國教院詞條</a></td>
+			{% for 物件 in 國教院詞條 %}
+				<td>{{ 物件}} </td>
 			{% endfor %}
 		</tr>
 		<tr>
@@ -47,4 +53,5 @@
 			{% endfor %}
 		</tr>
 	</table>
+	國教院翻譯華語句:{{ 國教院翻譯華語句 }}
 {% endblock %}
