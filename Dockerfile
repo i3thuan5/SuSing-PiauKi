@@ -18,3 +18,4 @@ EXPOSE 10010
 COPY . .
 RUN python3 manage.py 教典造字表匯入
 RUN python3 manage.py 教典詞性匯入
+RUN echo TAI5TSUAN2HUA2 = \'206.189.44.244\' >> 設定/settings.py
