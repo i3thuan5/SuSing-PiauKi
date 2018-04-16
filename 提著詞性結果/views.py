@@ -76,11 +76,7 @@ def 查教典詞性(漢字, 羅馬字):
 
 def 查國教院詞性(漢字, 羅馬字):
     位址 = getattr(settings, 'TAI5TSUAN2HUA2', None)
-    if 位址:
-        埠 = '80'
-    else:
-        位址 = 'localhost'
-        埠 = '8080'
+    埠 = getattr(settings, 'TAI5TSUAN2HUA2PORT', '8080')
     用戶端 = 摩西用戶端(
         編碼器=語句編碼器,
         位址=位址, 埠=埠,
