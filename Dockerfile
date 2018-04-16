@@ -10,12 +10,10 @@ ENV LC_ALL zh_TW.UTF-8
 
 RUN apt-get install -y python3-pip
 RUN pip3 install --upgrade pip
-RUN pip3 install Django
+RUN pip3 install Django gunicorn
 RUN pip3 install https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7/archive/Moses%E5%8A%A0%E8%A9%9E%E5%B0%8D%E6%87%89.zip
-
-EXPOSE 10010
 
 COPY . .
 RUN python3 manage.py 教典造字表匯入
 RUN python3 manage.py 教典詞性匯入
-RUN echo TAI5TSUAN2HUA2 = \'206.189.44.244\' >> 設定/settings.py
+RUN echo TAI5TSUAN2HUA2 = \'huan1ik8\' >> 設定/settings.py
