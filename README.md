@@ -1,4 +1,7 @@
 # su5-sing3
+[![Build Status](https://travis-ci.org/i3thuan5/su5-sing3.svg?branch=master)](https://travis-ci.org/i3thuan5/su5-sing3)
+[![Coverage Status](https://coveralls.io/repos/github/i3thuan5/su5-sing3/badge.svg?branch=master)](https://coveralls.io/github/i3thuan5/su5-sing3?branch=master)
+
 台語詞性標記
 
 ## 走服務
