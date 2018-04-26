@@ -1,0 +1,7 @@
+FROM su5-sing3
+MAINTAINER sih4sing5hong5
+
+RUN echo TAI5TSUAN2HUA2 = \'`/sbin/ip route|awk '/default/ { print $3 }'`\' >> 設定/settings.py
+RUN echo '逐-家｜tak8-ke1 做-伙｜tso3-hue2 來-𨑨-迌｜lai5-tshit4-tho5 ！' > 台語分詞
+COPY 華語標台語語料.py 華語標台語語料.py
+RUN python3 華語標台語語料.py
