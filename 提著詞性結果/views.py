@@ -66,7 +66,9 @@ def 查教典詞性(漢字, 羅馬字):
         詞漢 = 詞物件.看型()
         詞羅 = 詞物件.看音()
         try:
+            print((詞漢, 詞羅))
             詞性 = _詞性表[(詞漢, 詞羅)]
+            print((詞漢, 詞羅))
         except KeyError:
             詞性 = []
         資料.append((詞漢, 詞羅, 詞性))
@@ -74,17 +76,17 @@ def 查教典詞性(漢字, 羅馬字):
 
 
 def 查國教院詞性(漢字, 羅馬字):
-    位址 = getattr(settings, 'TAI5TSUAN2HUA2', None)
-    埠 = getattr(settings, 'TAI5TSUAN2HUA2PORT', '8080')
     句物件 = (
         拆文分析器
         .對齊句物件(漢字, 羅馬字)
         .轉音(臺灣閩南語羅馬字拼音)
     )
-    return 物件查國教院詞性(位址, 埠, 句物件)
+    return 物件查國教院詞性(句物件)
 
 
-def 物件查國教院詞性(位址, 埠, 句物件):
+def 物件查國教院詞性(句物件):
+    位址 = getattr(settings, 'TAI5TSUAN2HUA2', 'localhost')
+    埠 = getattr(settings, 'TAI5TSUAN2HUA2PORT', '8080')
     用戶端 = 摩西用戶端(
         編碼器=語句編碼器,
         位址=位址, 埠=埠,
