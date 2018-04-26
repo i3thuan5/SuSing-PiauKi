@@ -22,7 +22,7 @@ def 查詞性頁(request):
     try:
         漢字 = request.GET['han']
         羅馬字 = request.GET['lo']
-    except:
+    except KeyError:
         漢字 = '「九月颱，無人知」，'
         羅馬字 = '“Káu-gue̍h-thai, bô lâng tsai”,'
 

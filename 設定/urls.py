@@ -22,5 +22,4 @@ urlpatterns = [
     path('', 查詞性頁),
     path('su5/', 查詞性),
     path('admin/', admin.site.urls),
-    
 ]
