@@ -12,6 +12,7 @@ from 臺灣言語工具.基本物件.組 import 組
 class 台語斷詞(語言模型):
     def __init__(self):
         self.詞性ngram = KenLM語言模型('詞性.arpa')
+        self.詞性語詞機率 = self.讀詞頭尾機率('語詞')
         self.詞性詞頭機率 = self.讀詞頭尾機率('詞頭')
         self.詞性詞尾機率 = self.讀詞頭尾機率('詞尾')
         self.全部詞性 = sorted(self.詞性詞尾機率.keys())
@@ -27,19 +28,27 @@ class 台語斷詞(語言模型):
         return self.詞性ngram.上濟詞數()
 
     def 評詞陣列分(self, 詞陣列, 開始的所在=0):
+        print('詞陣列')
+        print(詞陣列)
+        詞性陣列=[]
+        for 詞物件 in 詞陣列:
+            try:
+                詞性陣列.append(拆文分析器.建立詞物件(詞物件.詞性))
+            except AttributeError:  # <s>, </s>
+                詞性陣列.append(詞物件)
         for 詞物件, ngram機率 in zip(詞陣列[開始的所在:], self.詞性ngram.評詞陣列分(詞陣列, 開始的所在)):
             字頭物件 = 詞物件.篩出字物件()[0]
             字尾物件 = 詞物件.篩出字物件()[-1]
             try:
+                語詞機率 = list(self.詞性語詞機率[詞物件.詞性].評詞陣列分([詞物件]))[0]
                 詞頭機率 = list(self.詞性詞頭機率[詞物件.詞性].評詞陣列分([詞([字頭物件])]))[0]
                 詞尾機率 = list(self.詞性詞尾機率[詞物件.詞性].評詞陣列分([詞([字尾物件])]))[0]
                 print(
                     詞物件, 詞物件.詞性, [詞([字頭物件])], [詞([字尾物件])],
-                    ngram機率 + 詞頭機率 + 詞尾機率,
-                    ngram機率, 詞頭機率, 詞尾機率
+                    ngram機率 + 語詞機率 + 詞頭機率 + 詞尾機率,
+                    ngram機率, 語詞機率, 詞頭機率, 詞尾機率
                 )
-                yield ngram機率 + 詞頭機率 + 詞尾機率
-
+                yield ngram機率 + 語詞機率 + 詞頭機率 + 詞尾機率
             except AttributeError:  # </s>
                 yield ngram機率
 
