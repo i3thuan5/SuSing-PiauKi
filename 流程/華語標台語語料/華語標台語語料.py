@@ -19,4 +19,6 @@ if __name__ == '__main__':
                 '詞性': 詞性,
             })
         全部資料.append(句資料)
-    print(json.dumps(全部資料, ensure_ascii=False, sort_keys=True, indent=2))
+    print(
+        json.dumps(全部資料, ensure_ascii=False, sort_keys=True, indent=2)
+    )
