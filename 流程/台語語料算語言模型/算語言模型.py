@@ -17,7 +17,7 @@ if __name__ == '__main__':
         for 句資料 in 全部資料:
             詞性序列 = []
             for 資料 in 句資料:
-                詞性 = 資料['詞性'].split(',')[-1]
+                詞性 = 資料['詞性'].split(',')[-1].strip()
                 if 詞性 != '':
                     詞性序列.append(詞性)
                     詞物件 = 拆文分析器.對齊詞物件(資料['漢字'], 資料['臺羅'])
@@ -48,7 +48,7 @@ if __name__ == '__main__':
             print(' '.join(字陣列), file=檔案)
         with TemporaryDirectory() as 暫存資料夾:
             copyfile(
-                KenLM語言模型訓練().訓練(['{}.txt'.format(檔名)], 暫存資料夾, 連紲詞長度=3),
+                KenLM語言模型訓練().訓練(['{}.txt'.format(檔名)], 暫存資料夾, 連紲詞長度=1),
                 '{}.arpa'.format(檔名)
             )
     詞尾資料夾 = '詞尾'
@@ -59,7 +59,7 @@ if __name__ == '__main__':
             print(' '.join(字陣列), file=檔案)
         with TemporaryDirectory() as 暫存資料夾:
             copyfile(
-                KenLM語言模型訓練().訓練(['{}.txt'.format(檔名)], 暫存資料夾, 連紲詞長度=3),
+                KenLM語言模型訓練().訓練(['{}.txt'.format(檔名)], 暫存資料夾, 連紲詞長度=1),
                 '{}.arpa'.format(檔名)
             )
     print(詞頭)
