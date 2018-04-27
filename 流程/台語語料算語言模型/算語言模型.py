@@ -48,7 +48,7 @@ if __name__ == '__main__':
             print(' '.join(字陣列), file=檔案)
         with TemporaryDirectory() as 暫存資料夾:
             copyfile(
-                KenLM語言模型訓練().訓練(['{}.txt'.format(檔名)], 暫存資料夾, 連紲詞長度=1),
+                KenLM語言模型訓練().訓練(['{}.txt'.format(檔名)], 暫存資料夾, 連紲詞長度=2),
                 '{}.arpa'.format(檔名)
             )
     詞尾資料夾 = '詞尾'
@@ -59,7 +59,7 @@ if __name__ == '__main__':
             print(' '.join(字陣列), file=檔案)
         with TemporaryDirectory() as 暫存資料夾:
             copyfile(
-                KenLM語言模型訓練().訓練(['{}.txt'.format(檔名)], 暫存資料夾, 連紲詞長度=1),
+                KenLM語言模型訓練().訓練(['{}.txt'.format(檔名)], 暫存資料夾, 連紲詞長度=2),
                 '{}.arpa'.format(檔名)
             )
     print(詞頭)
