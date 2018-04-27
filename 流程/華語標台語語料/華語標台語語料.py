@@ -7,7 +7,7 @@ from sys import stdin
 
 if __name__ == '__main__':
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "設定.settings")
-    全部資料=[]
+    全部資料 = []
     for 一句 in stdin.readlines():
         句物件 = 拆文分析器.分詞句物件(一句.rstrip())
         國教院詞性, _國教院詞條, _華語句 = 物件查國教院詞性(句物件)

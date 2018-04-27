@@ -16,4 +16,5 @@ time docker build -t tai5-hua5 流程/台華翻譯模型訓練/
 docker run --rm -p 8080:8080 tai5-hua5 /usr/local/lib/python3.5/dist-packages/外部程式/mosesdecoder/bin/mosesserver -f 服務資料/臺語/翻譯做外文模型/model/moses.ini
 # docker run -d  --name tai5-hua5 -p 8080:8080 tai5-hua5 /usr/local/lib/python3.5/dist-packages/外部程式/mosesdecoder/bin/mosesserver -f 服務資料/臺語/翻譯做外文模型/model/moses.ini
 time docker build -t tai5_gi2-liau7 流程/華語標台語語料/
+time docker build -t tai5_gi2-gian5_boo5-hing5 流程/台語語料算語言模型/
 ```
