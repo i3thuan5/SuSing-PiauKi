@@ -3,5 +3,7 @@
 /LICENSE
 /README.md
 /venv
+/.tox
 /.settings
 /docker-compose.yml
+/流程
