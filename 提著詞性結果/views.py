@@ -108,6 +108,7 @@ def 物件查國教院詞性(句物件):
             字陣列 = 對應華語詞.篩出字物件()
             try:
                 if 字陣列[-3].型 == '（' and 字陣列[-1].型 == '）':
+                    # replace 愛提掉
                     詞的可能詞性.append(字陣列[-2].型.replace('VV2', 'V_2'))
                     詞條可能詞性.append(對應華語詞.看型().replace('VV2', 'V_2'))
             except IndexError:
