@@ -13,7 +13,7 @@ RUN cat train.txt | tail -n 1000 > deepnlp/pos/data/tw/test.txt
 
 WORKDIR /usr/local/deepnlp/deepnlp/pos
 # RUN pip3 install tensorflow==1.4.0
-RUN cp data/tw/train.txt data/tw/dev.txt
+RUN cp data/tw/dev.txt data/tw/train.txt
 RUN cp data/tw/dev.txt data/tw/test.txt
 RUN python3 pos_model.py tw
 
