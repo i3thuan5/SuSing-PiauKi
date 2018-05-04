@@ -1,4 +1,4 @@
-FROM hok8-bu7
+FROM i3thuan5/hok8-bu7
 MAINTAINER sih4sing5hong5
 
 RUN pip3 install --upgrade https://github.com/i3thuan5/tai5-uan5_gian5-gi2_hok8-bu7/archive/%E7%BF%BB%E8%AD%AF%E6%94%B9%E9%81%8E%E6%B8%A1.zip
