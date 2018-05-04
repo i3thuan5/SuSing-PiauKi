@@ -1,7 +1,6 @@
-FROM deepnlp
+FROM i3thuan5/deepnlp
 MAINTAINER sih4sing5hong5
 
-RUN pip3 install https://github.com/sih4sing5hong5/tai5-uan5_gian5-gi2_kang1-ku7/archive/master.zip
 COPY --from=tai5_gi2-liau7 /usr/local/su5-sing3/台語詞性 台語詞性
 COPY 轉語料.py 轉語料.py
 RUN cat 台語詞性 | python3 轉語料.py
