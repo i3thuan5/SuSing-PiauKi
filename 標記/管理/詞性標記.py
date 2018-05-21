@@ -83,9 +83,9 @@ class 標記表管理(ReadOnlyAdminFields, admin.ModelAdmin):
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
-
-        漢字 = '「九月颱，無人知」，'
-        羅馬字 = '“Káu-gue̍h-thai, bô lâng tsai”,'
+        物件 = self.get_queryset(request).get(id=object_id)
+        漢字 = 物件.漢字
+        羅馬字 = 物件.羅馬字
         漢, 羅, 性 = 查教典詞性(漢字, 羅馬字)
         國教院詞性, 國教院詞條, 翻譯華語句 = [], [], []
 #         國教院詞性, 國教院詞條, 翻譯華語句 = 查國教院詞性(漢字, 羅馬字)
