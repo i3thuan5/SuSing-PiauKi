@@ -72,8 +72,14 @@ class 標記表管理(ReadOnlyAdminFields, admin.ModelAdmin):
     # change view
     # venv/lib/python3.5/site-packages/django/contrib/admin/templates/admin/
 #     change_list_template = 'admin/custom_change_list.html'
-    change_form_template = 'admin/custom_change_form.html'
+    change_form_template = 'admin/標記/custom_change_form.html'
+
     class Media:
         css = {
             "all": ("css/admin_gi2_liau7_pio2.css", "css/moedictFont.css")
         }
+
+    def change_view(self, request, object_id, form_url='', extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['some_var'] = 'This is what I want to show'
+        return super(標記表管理, self).change_view(request, object_id, form_url, extra_context=extra_context)
