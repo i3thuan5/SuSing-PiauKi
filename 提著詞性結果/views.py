@@ -26,14 +26,7 @@ def 查詞性頁(request):
         漢字 = '「九月颱，無人知」，'
         羅馬字 = '“Káu-gue̍h-thai, bô lâng tsai”,'
 
-    漢 = []
-    羅 = []
-    性 = []
-    for (詞漢, 詞羅, 詞性) in 查教典詞性(漢字, 羅馬字):
-        漢.append(詞漢)
-        羅.append(詞羅)
-        性.append(', '.join(詞性))
-
+    漢, 羅, 性 = 查教典詞性(漢字, 羅馬字)
     國教院詞性, 國教院詞條, 翻譯華語句 = 查國教院詞性(漢字, 羅馬字)
     return render(request, '文章/看文章.html', {
         'han': 漢字,
@@ -48,6 +41,17 @@ def 查詞性頁(request):
 
 
 def 查教典詞性(漢字, 羅馬字):
+    漢 = []
+    羅 = []
+    性 = []
+    for (詞漢, 詞羅, 詞性) in _查教典詞性資料(漢字, 羅馬字):
+        漢.append(詞漢)
+        羅.append(詞羅)
+        性.append(', '.join(詞性))
+    return 漢, 羅, 性
+
+
+def _查教典詞性資料(漢字, 羅馬字):
     _詞性表 = {}
     with open('kiat4-ko2') as 檔案:
         for 漢, 羅, 詞性 in json.load(檔案):

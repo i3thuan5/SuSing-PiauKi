@@ -4,6 +4,8 @@ from django.forms.widgets import CheckboxSelectMultiple, Textarea
 from django.utils.timezone import now
 from 標記.models import 語料表
 from 標記.管理.ReadOnlyAdminFields import ReadOnlyAdminFields
+from 提著詞性結果.views import 查教典詞性
+from 提著詞性結果.views import 查國教院詞性
 
 
 class 標記表(語料表):
@@ -81,5 +83,18 @@ class 標記表管理(ReadOnlyAdminFields, admin.ModelAdmin):
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
-        extra_context['some_var'] = 'This is what I want to show'
+
+        漢字 = '「九月颱，無人知」，'
+        羅馬字 = '“Káu-gue̍h-thai, bô lâng tsai”,'
+        漢, 羅, 性 = 查教典詞性(漢字, 羅馬字)
+        國教院詞性, 國教院詞條, 翻譯華語句 = [], [], []
+#         國教院詞性, 國教院詞條, 翻譯華語句 = 查國教院詞性(漢字, 羅馬字)
+        extra_context.update({
+            '漢': 漢,
+            '羅': 羅,
+            '性': 性,
+            '國教院詞性': 國教院詞性,
+            '國教院詞條': 國教院詞條,
+            '國教院翻譯華語句': 翻譯華語句,
+        })
         return super(標記表管理, self).change_view(request, object_id, form_url, extra_context=extra_context)
