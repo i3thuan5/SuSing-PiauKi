@@ -28,7 +28,7 @@ def 查詞性頁(request):
 
     漢, 羅, 性 = 查教典詞性(漢字, 羅馬字)
     國教院詞性, 國教院詞條, 翻譯華語句 = 查國教院詞性(漢字, 羅馬字)
-    return render(request, '文章/看文章.html', {
+    return render(request, '一句詞性/查一句.html', {
         'han': 漢字,
         'lo': 羅馬字,
         '漢': 漢,
