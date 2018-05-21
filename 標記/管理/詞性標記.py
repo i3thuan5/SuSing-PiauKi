@@ -33,10 +33,6 @@ class 標記表管理(ReadOnlyAdminFields, admin.ModelAdmin):
     ]
     list_per_page = 20
 
-    # change view
-    # venv/lib/python3.5/site-packages/django/contrib/admin/templates/admin/
-#     change_list_template = 'admin/gi2_liau7_khoo3/語料表/custom_change_list.html'
-#     change_form_template = 'admin/gi2_liau7_khoo3/語料表/custom_change_form.html'
 #     readonly_fields = ('音檔', '頭一版資料',)
     fieldsets = (
         ('漢字', {
@@ -73,6 +69,10 @@ class 標記表管理(ReadOnlyAdminFields, admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         return False
 
+    # change view
+    # venv/lib/python3.5/site-packages/django/contrib/admin/templates/admin/
+#     change_list_template = 'admin/custom_change_list.html'
+    change_form_template = 'admin/custom_change_form.html'
     class Media:
         css = {
             "all": ("css/admin_gi2_liau7_pio2.css", "css/moedictFont.css")

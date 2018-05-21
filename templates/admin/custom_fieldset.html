@@ -1,0 +1,45 @@
+<fieldset class="module aligned {{ fieldset.classes }}">
+    {% if fieldset.name %}<h2>{{ fieldset.name }}</h2>{% endif %}
+    {% if fieldset.description %}
+        <div class="description">{{ fieldset.description|safe }}</div>
+    {% endif %}
+    {% for line in fieldset %}
+        <div class="form-row{% if line.fields|length_is:'1' and line.errors %} errors{% endif %}{% if not line.has_visible_field %} hidden{% endif %}{% for field in line %}{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% endfor %}">
+            {% if line.fields|length_is:'1' %}{{ line.errors }}{% endif %}
+            {% for field in line %}
+                <div{% if not line.fields|length_is:'1' %} class="field-box{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% if not field.is_readonly and field.errors %} errors{% endif %}{% if field.field.is_hidden %} hidden{% endif %}"{% elif field.is_checkbox %} class="checkbox-row"{% endif %}>
+                    {% if not line.fields|length_is:'1' and not field.is_readonly %}{{ field.errors }}{% endif %}
+                    {% if field.is_checkbox %}
+                        {{ field.field }}{{ field.label_tag }}
+                    {% else %}
+                    	{{ field.label_tag }}
+                        {% if field.is_readonly %}
+                            <div class="readonly">{{ field.contents }}</div>
+                        {% elif field.field.name == '漢字' %}
+                        <div class="field-two-line">
+                			<div>
+                			    <input type='button' id='ing7khau2gi2ting5pio1' value='重產生標漢字佮本調臺羅'/>
+                			</div>
+                        	<div class="field-hint">{{field.field.value }}</div>
+                        	<div>
+                        		{{ field.field }}
+                        		<input type='button' id='senn1pun2tiau7' value='生本調'/>
+                        	</div>
+                        </div>
+                        {% elif field.field.name == '本調臺羅' or field.field.name == '口語調臺羅' %}
+                        <div class="field-two-line field-90w">
+	                        <div class="field-hint">{{field.field.value }}</div>
+	                        {{ field.field }}
+                        </div>
+                        {% else %}
+                        	{{ field.field }}
+                        {% endif %}
+                    {% endif %}
+                    {% if field.field.help_text %}
+                        <div class="help">{{ field.field.help_text|safe }}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</fieldset>
