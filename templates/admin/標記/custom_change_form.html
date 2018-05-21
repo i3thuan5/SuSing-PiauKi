@@ -15,38 +15,15 @@
 <script type="text/javascript">
 	
 	django.jQuery(document).ready(function($){
-		$('#校對表_form').on('keypress', function(e) {
-			var keyCode = e.keyCode || e.which;
-			if (keyCode === 13) { 
-			    e.preventDefault();
-			    $('input[name="_continue"]').click();
-			    return false;
-			}
-		});
 		 
-		$("#ing7khau2gi2ting5pio1").on('click', function(){
-			var a='/口語標漢字本調/'+django.jQuery("#id_口語調臺羅").val();
-			var jqxhr = django.jQuery.ajax( a )
-			  .done(function(data) {
-				django.jQuery("#id_漢字").val(data.漢字);
-				django.jQuery("#id_本調臺羅").val(data.本調);
-			  })
-			  .fail(function() {
-			    alert( "error" );
-			  });
+		$("#san2-sing1_json").on('click', function(){
+			var 詞性=[];
+			django.jQuery("select.su5-sing3").each(function( index ) {
+			  詞性.push( $( this ).val() );
+			});
+			django.jQuery("#id_詞性").val(JSON.stringify(詞性));
 		})
 	 
-		$("#senn1pun2tiau7").on('click', function(){
-			var a='/標本調/'+django.jQuery("#id_漢字").val()+'/'+django.jQuery("#id_本調臺羅").val();
-			/*alert(a);/* /*  */ 
-			var jqxhr = django.jQuery.ajax( a )
-			  .done(function(data) {
-				django.jQuery("#id_本調臺羅").val(data.本調);
-			  })
-			  .fail(function() {
-			    alert( "error" );
-			  });
-		})
 		
 	});
 </script>
