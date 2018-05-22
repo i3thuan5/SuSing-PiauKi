@@ -1,0 +1,12 @@
+
+{% block 斷詞內容 %}
+	<form action='.' method='get' >
+	  <fieldset>
+		   <input type='text' name='han' value="{{ han }}" />
+		   <input type='text' name='lo' value="{{ lo }}" />
+		   <input type='submit' name='查' />
+	  </fieldset>
+	</form>
+	{% include "一句詞性/看一句.html" %}
+	國教院翻譯華語句:{{ 國教院翻譯華語句 }}
+{% endblock %}

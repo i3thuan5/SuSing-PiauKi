@@ -1,12 +1,5 @@
 
-{% block 斷詞內容 %}
-	<form action='.' method='get' >
-  <fieldset>
-	   <input type='text' name='han' value="{{ han }}" />
-	   <input type='text' name='lo' value="{{ lo }}" />
-	   <input type='submit' name='查' />
-  </fieldset>
-	</form>
+{% block 標記詞性 %}
 	<table class="資料" border=1>		
 		<tr>
 			<td>漢</td>
@@ -40,18 +33,19 @@
 		</tr>
 		<tr>
 			<td>標記詞性</td>
-			{% for 物件 in 性 %}
+			{% for 物件 in 預設詞性 %}
 					<td>						
-						<select name="carlist" form="carform">
-						  <option value="選擇詞性…">選擇詞性…</option>
-						  <option value="動">動</option>
-						  <option value="名">名</option>
-						  <option value="副">副</option>
-						  <option value="…">…</option>
+						<select class='su5-sing3'>
+						  <option value="選擇詞性…" disabled hidden>選擇詞性…</option>
+                          {% for 詞性 in 詞性種類 %}
+						    <option value={{ 詞性 }}
+						      {% if 物件 == 詞性 %}selected{% endif %}>
+						        {{ 詞性 }}
+					        </option>
+						  {% endfor %}
 						</select>
 					 </td>
 			{% endfor %}
 		</tr>
 	</table>
-	國教院翻譯華語句:{{ 國教院翻譯華語句 }}
 {% endblock %}

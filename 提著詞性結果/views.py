@@ -1,5 +1,6 @@
 import json
 
+from django.conf import settings
 from django.http.response import JsonResponse
 from django.shortcuts import render
 
@@ -8,7 +9,7 @@ from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 from 臺灣言語工具.翻譯.摩西工具.語句編碼器 import 語句編碼器
 from 臺灣言語工具.翻譯.摩西工具.摩西用戶端 import 摩西用戶端
-from django.conf import settings
+from 標記.台灣閩南語詞類標記TAICORP import 詞性種類
 
 
 def 查詞性(request):
@@ -26,16 +27,9 @@ def 查詞性頁(request):
         漢字 = '「九月颱，無人知」，'
         羅馬字 = '“Káu-gue̍h-thai, bô lâng tsai”,'
 
-    漢 = []
-    羅 = []
-    性 = []
-    for (詞漢, 詞羅, 詞性) in 查教典詞性(漢字, 羅馬字):
-        漢.append(詞漢)
-        羅.append(詞羅)
-        性.append(', '.join(詞性))
-
+    漢, 羅, 性 = 查教典詞性(漢字, 羅馬字)
     國教院詞性, 國教院詞條, 翻譯華語句 = 查國教院詞性(漢字, 羅馬字)
-    return render(request, '文章/看文章.html', {
+    return render(request, '一句詞性/查一句.html', {
         'han': 漢字,
         'lo': 羅馬字,
         '漢': 漢,
@@ -44,10 +38,23 @@ def 查詞性頁(request):
         '國教院詞性': 國教院詞性,
         '國教院詞條': 國教院詞條,
         '國教院翻譯華語句': 翻譯華語句,
+        '詞性種類': 詞性種類,
+        '預設詞性': 國教院詞性,
     })
 
 
 def 查教典詞性(漢字, 羅馬字):
+    漢 = []
+    羅 = []
+    性 = []
+    for (詞漢, 詞羅, 詞性) in _查教典詞性資料(漢字, 羅馬字):
+        漢.append(詞漢)
+        羅.append(詞羅)
+        性.append(', '.join(詞性))
+    return 漢, 羅, 性
+
+
+def _查教典詞性資料(漢字, 羅馬字):
     _詞性表 = {}
     with open('kiat4-ko2') as 檔案:
         for 漢, 羅, 詞性 in json.load(檔案):

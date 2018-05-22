@@ -1,0 +1,20 @@
+/*! moedict font
+* Website: https://www.moedict.tw/
+* Github: https://github.com/g0v/moedict-webkit/blob/master/sass/han/mre/ff/_range.scss
+*/
+
+/* CJK Ext-A, B, C, D, E */
+@font-face {
+  font-family: "MOEDICT";
+  unicode-range: U+4E00-9FFF,
+          U+3400-4DB5,
+          U+20000-28467,
+          U+28469-2A6D6,
+          U+2A700-2B734,
+          U+2B740-2B81D,
+          U+2B820-2CEAF;
+  src: url(https://www.moedict.tw/MOEDICT.woff) format('woff'),
+  url("https://www.moedict.tw/MOEDICT.otf") format('opentype'),
+  url("https://www.moedict.tw/MOEDICT.ttf") format('truetype'),
+  url("https://www.moedict.tw/MOEDICT.eot");
+}

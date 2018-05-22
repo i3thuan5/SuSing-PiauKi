@@ -1,0 +1,49 @@
+/*
+* Overriding base.css
+*/
+body {
+	font-family: "MOEDICT", "Roboto","Lucida Grande","DejaVu Sans","Bitstream Vera Sans",Verdana,Arial,sans-serif;
+}
+td, th, input, textarea {
+	font-family: "MOEDICT", "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+}
+/*
+* Overriding fieldset style 
+*/
+.module {
+	margin-bottom: 20px;
+}
+.wide label {
+	width: 100px;
+}
+.module > h2 {
+	display: none;
+}
+/*
+* Overriding style of CheckboxSelectMultiple widget
+*/
+form .related-widget-wrapper ul {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	max-width: 60vw;
+}
+/*
+* Style for TextField
+*/
+.field-two-line {
+	display: flex;
+	flex-flow: column nowrap;
+}
+.field-80w {
+	width: 80%;
+}
+.field-90w {
+	width: 90%;
+}
+.field-hint {
+	color: #666;
+	display: block;
+	line-height: 1.6em;
+	padding-left: 6px; 
+}
