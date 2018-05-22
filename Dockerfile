@@ -22,3 +22,5 @@ RUN python3 manage.py 教典造字表匯入
 RUN python3 manage.py 教典詞性匯入
 RUN echo TAI5TSUAN2HUA2 = \'huan1ik8\' >> 設定/settings.py
 
+RUN python3 manage.py migrate
+RUN python3 manage.py collectstatic
