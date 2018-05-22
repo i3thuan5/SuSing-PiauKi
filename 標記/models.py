@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models.signals import post_save
-from jsonfield.fields import JSONField
 
 
 class 語料表(models.Model):
