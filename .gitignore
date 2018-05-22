@@ -105,4 +105,4 @@ ENV/
 /tso3-ji7
 /kiat4-ko2*
 /db.sqlite3
-
+/whitenoise_static
