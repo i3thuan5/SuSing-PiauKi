@@ -15,14 +15,19 @@
 <script type="text/javascript">
 	
 	django.jQuery(document).ready(function($){
-		 
-		$("#san2-sing1_json").on('click', function(){
+		function sun5_su5sing3(){
 			var 詞性=[];
 			django.jQuery("select.su5-sing3").each(function( index ) {
 			  詞性.push( $( this ).val() );
 			});
 			django.jQuery("#id_詞性").val(JSON.stringify(詞性));
-		})
+		}
+		
+		$("#san2-sing1_json").on('click', sun5_su5sing3);
+		
+		$(".submit-row").find('input').on('click', sun5_su5sing3);
+		
+		$("#id_詞性").css('display','none');
 	 
 		
 	});
