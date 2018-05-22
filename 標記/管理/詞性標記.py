@@ -12,6 +12,9 @@ from 標記.管理.ReadOnlyAdminFields import ReadOnlyAdminFields
 from 提著詞性結果.views import 查教典詞性
 from 提著詞性結果.views import 查國教院詞性
 from 標記.台灣閩南語詞類標記TAICORP import 詞性種類
+from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
+from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
+from 提著詞性結果.views import 物件查程式詞性
 
 
 class 標記表(語料表):
@@ -93,12 +96,17 @@ class 標記表管理(ReadOnlyAdminFields, admin.ModelAdmin):
         漢字 = 物件.漢字
         羅馬字 = 物件.羅馬字
         漢, 羅, 性 = 查教典詞性(漢字, 羅馬字)
-#         國教院詞性, 國教院詞條, 翻譯華語句 = (['VA', 'A', 'Na', 'V_2'] * 10)[:len(性)], [], []
+        句物件 = (
+            拆文分析器
+            .對齊句物件(漢字, 羅馬字)
+            .轉音(臺灣閩南語羅馬字拼音)
+        )
         國教院詞性, 國教院詞條, 翻譯華語句 = 查國教院詞性(漢字, 羅馬字)
+        程式詞性 = 物件查程式詞性(句物件)
         try:
-            預設詞性 = json.loads(物件.詞性) or 國教院詞性
+            預設詞性 = json.loads(物件.詞性)
         except JSONDecodeError:
-            預設詞性 = 國教院詞性
+            預設詞性 = 程式詞性
         extra_context.update({
             '漢': 漢,
             '羅': 羅,
@@ -106,6 +114,7 @@ class 標記表管理(ReadOnlyAdminFields, admin.ModelAdmin):
             '國教院詞性': 國教院詞性,
             '國教院詞條': 國教院詞條,
             '國教院翻譯華語句': 翻譯華語句,
+            '程式詞性': 程式詞性,
             '詞性種類': 詞性種類,
             '預設詞性': 預設詞性,
         })
