@@ -6,6 +6,7 @@ from 標記.models import 語料表
 from 標記.管理.ReadOnlyAdminFields import ReadOnlyAdminFields
 from 提著詞性結果.views import 查教典詞性
 from 提著詞性結果.views import 查國教院詞性
+from 標記.台灣閩南語詞類標記TAICORP import 詞性種類
 
 
 class 標記表(語料表):
@@ -87,9 +88,8 @@ class 標記表管理(ReadOnlyAdminFields, admin.ModelAdmin):
         漢字 = 物件.漢字
         羅馬字 = 物件.羅馬字
         漢, 羅, 性 = 查教典詞性(漢字, 羅馬字)
-        國教院詞性, 國教院詞條, 翻譯華語句 = ['名','副','動', '名'], [], []
+        國教院詞性, 國教院詞條, 翻譯華語句 = (['VA','A','Na', 'V_2']*10)[:len(性)], [], []
 #         國教院詞性, 國教院詞條, 翻譯華語句 = 查國教院詞性(漢字, 羅馬字)
-        詞性種類 = ['動', '名','副',]
         extra_context.update({
             '漢': 漢,
             '羅': 羅,
