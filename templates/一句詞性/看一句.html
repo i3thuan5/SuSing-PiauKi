@@ -33,14 +33,16 @@
 		</tr>
 		<tr>
 			<td>標記詞性</td>
-			{% for 物件 in 性 %}
+			{% for 物件 in 國教院詞性 %}
 					<td>						
 						<select class='su5-sing3'>
-						  <option value="選擇詞性…">選擇詞性…</option>
-						  <option value="動">動</option>
-						  <option value="名">名</option>
-						  <option value="副">副</option>
-						  <option value="…">…</option>
+						  <option value="選擇詞性…" disabled hidden>選擇詞性…</option>
+                          {% for 詞性 in 詞性種類 %}
+						    <option value={{ 詞性 }}
+						      {% if 物件 == 詞性 %}selected{% endif %}>
+						        {{ 詞性 }}
+					        </option>
+						  {% endfor %}
 						</select>
 					 </td>
 			{% endfor %}
