@@ -7,6 +7,8 @@ from django.test.testcases import TestCase
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 提著詞性結果.views import 物件查程式詞性
 
+# https://bugs.python.org/issue28414
+# python 3.7已經修正
 ssl.match_hostname = lambda cert, hostname: True
 
 

@@ -1,5 +1,6 @@
 from http.client import HTTPSConnection
 import json
+import ssl
 from urllib.parse import quote
 
 from django.conf import settings
@@ -12,6 +13,10 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 im
 from 臺灣言語工具.翻譯.摩西工具.語句編碼器 import 語句編碼器
 from 臺灣言語工具.翻譯.摩西工具.摩西用戶端 import 摩西用戶端
 from 標記.台灣閩南語詞類標記TAICORP import 詞性種類
+
+# https://bugs.python.org/issue28414
+# python 3.7已經修正
+ssl.match_hostname = lambda cert, hostname: True
 
 
 def 查詞性(request):
