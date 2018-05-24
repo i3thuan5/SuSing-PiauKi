@@ -1,4 +1,7 @@
+from http.client import HTTPSConnection
 import json
+import ssl
+from urllib.parse import quote
 
 from django.conf import settings
 from django.http.response import JsonResponse
@@ -10,6 +13,10 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 im
 from 臺灣言語工具.翻譯.摩西工具.語句編碼器 import 語句編碼器
 from 臺灣言語工具.翻譯.摩西工具.摩西用戶端 import 摩西用戶端
 from 標記.台灣閩南語詞類標記TAICORP import 詞性種類
+
+# https://bugs.python.org/issue28414
+# python 3.7已經修正
+ssl.match_hostname = lambda cert, hostname: True
 
 
 def 查詞性(request):
@@ -28,7 +35,13 @@ def 查詞性頁(request):
         羅馬字 = '“Káu-gue̍h-thai, bô lâng tsai”,'
 
     漢, 羅, 性 = 查教典詞性(漢字, 羅馬字)
+    句物件 = (
+        拆文分析器
+        .對齊句物件(漢字, 羅馬字)
+        .轉音(臺灣閩南語羅馬字拼音)
+    )
     國教院詞性, 國教院詞條, 翻譯華語句 = 查國教院詞性(漢字, 羅馬字)
+    程式詞性 = 物件查程式詞性(句物件)
     return render(request, '一句詞性/查一句.html', {
         'han': 漢字,
         'lo': 羅馬字,
@@ -38,6 +51,7 @@ def 查詞性頁(request):
         '國教院詞性': 國教院詞性,
         '國教院詞條': 國教院詞條,
         '國教院翻譯華語句': 翻譯華語句,
+        '程式詞性': 程式詞性,
         '詞性種類': 詞性種類,
         '預設詞性': 國教院詞性,
     })
@@ -123,3 +137,31 @@ def 物件查國教院詞性(句物件):
         國教院詞性.append(', '.join(詞的可能詞性))
         國教院詞條.append(', '.join(詞條可能詞性))
     return 國教院詞性, 國教院詞條, 華語句物件.看型('', ' ')
+
+
+def 查程式詞性(漢字, 羅馬字):
+    句物件 = (
+        拆文分析器
+        .對齊句物件(漢字, 羅馬字)
+        .轉音(臺灣閩南語羅馬字拼音)
+    )
+    return 物件查程式詞性(句物件)
+
+
+def 物件查程式詞性(句物件):
+    conn = HTTPSConnection('xn--s-sng-vsa6h.xn--v0qr21b.xn--kpry57d')
+    conn.request(
+        "GET",
+        '/{}'.format(
+            quote(句物件.看分詞()),
+        )
+    )
+    r1 = conn.getresponse()
+    if r1.status != 200:
+        print(r1.status, r1.reason)
+        print(句物件.看分詞())
+        raise RuntimeError()
+    詞性結果 = []
+    for _分詞, 詞性 in json.loads(r1.read().decode('utf-8')):
+        詞性結果.append(詞性)
+    return 詞性結果
