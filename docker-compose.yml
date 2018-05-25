@@ -6,6 +6,8 @@ services:
     command: gunicorn 設定.wsgi --log-level debug -b 0.0.0.0:8000
     depends_on:
       - huan1ik8
+    volumes:
+      - /usr/local/su5-sing3/tsu-liāu
     environment:
       VIRTUAL_HOST: "xn--w8tq35g.xn--v0qr21b.xn--kpry57d"
       VIRTUAL_PORT: 8000
