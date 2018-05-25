@@ -23,3 +23,11 @@ time docker build -t tai5_gi2-liau7 流程/華語標台語語料/
 
 time docker build -t tai5_deepnlp 流程/產生deepnlp語料/
 ```
+
+### 上傳臺語翻華語
+```
+docker login 
+time docker build -t tai5-hua5 流程/台華翻譯模型訓練/
+docker tag tai5-hua5 i3thuan5/su5-sing3_tai5-hua5
+docker push i3thuan5/su5-sing3_tai5-hua5
+```

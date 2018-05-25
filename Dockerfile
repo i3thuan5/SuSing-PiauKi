@@ -6,11 +6,12 @@ RUN apt-get install -y python3 virtualenv g++ python3-dev git libpq-dev postgres
 
 # Switch locale
 RUN locale-gen zh_TW.UTF-8
+# ENV LANG zh_TW.UTF-8
 ENV LC_ALL zh_TW.UTF-8
 
 RUN apt-get install -y python3-pip
 RUN pip3 install --upgrade pip
-RUN pip3 install Django jsonfield gunicorn
+RUN pip3 install Django whitenoise gunicorn
 RUN pip3 install tai5-uan5_gian5-gi2_kang1-ku7
 
 EXPOSE 8000
@@ -22,3 +23,5 @@ RUN python3 manage.py 教典造字表匯入
 RUN python3 manage.py 教典詞性匯入
 RUN echo TAI5TSUAN2HUA2 = \'huan1ik8\' >> 設定/settings.py
 
+RUN python3 manage.py migrate
+RUN python3 manage.py collectstatic

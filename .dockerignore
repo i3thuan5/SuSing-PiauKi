@@ -7,3 +7,4 @@
 /.settings
 /docker-compose.yml
 /流程
+/whitenoise_static
