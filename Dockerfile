@@ -6,6 +6,7 @@ RUN apt-get install -y python3 virtualenv g++ python3-dev git libpq-dev postgres
 
 # Switch locale
 RUN locale-gen zh_TW.UTF-8
+# ENV LANG zh_TW.UTF-8
 ENV LC_ALL zh_TW.UTF-8
 
 RUN apt-get install -y python3-pip
