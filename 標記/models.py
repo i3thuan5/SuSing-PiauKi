@@ -21,8 +21,12 @@ class 語料表(models.Model):
     class Meta:
         verbose_name = "語料表"
         verbose_name_plural = verbose_name
+        unique_together = ('原本漢字', '原本羅馬字',)
 
     def save(self, *args, **kwargs):
+        if self.pk is None:
+            self.漢字 = self.原本漢字
+            self.羅馬字 = self.原本羅馬字
         super(語料表, self).save(*args, **kwargs)
         post_save.send(sender=self.__class__, instance=self)
 
