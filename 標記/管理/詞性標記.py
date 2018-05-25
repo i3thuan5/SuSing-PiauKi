@@ -45,7 +45,6 @@ class 標記表管理(ReadOnlyAdminFields, admin.ModelAdmin):
     ]
     list_per_page = 20
 
-#     readonly_fields = ('音檔', '頭一版資料',)
     fieldsets = (
         ('漢字', {
             'fields': ('漢字', '羅馬字', '詞性', '備註', ),
