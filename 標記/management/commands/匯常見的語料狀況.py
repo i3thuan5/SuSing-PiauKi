@@ -10,7 +10,7 @@ from 標記.models import 語料狀況表
 class Command(BaseCommand):
 
     def handle(self, *args, **參數):
-        print('狀況數量：{}'.format(狀況.objects.count()), file=self.stdout)
+        print('狀況數量：{}'.format(語料狀況表.objects.count()), file=self.stdout)
 
         with atomic():
             for 狀況 in [
@@ -21,7 +21,7 @@ class Command(BaseCommand):
                 try:
                     語料狀況表.objects.create(狀況=狀況)
                 except IntegrityError:
-                    print('可能匯過矣！', file=self.stdout)
+                    print('{} 可能匯過矣！'.format(狀況), file=self.stdout)
                     raise
 
-        print('狀況數量：{}'.format(狀況.objects.count()), file=self.stdout)
+        print('狀況數量：{}'.format(語料狀況表.objects.count()), file=self.stdout)
