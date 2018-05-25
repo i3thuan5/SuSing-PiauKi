@@ -39,12 +39,12 @@ class 標記表管理(ReadOnlyAdminFields, admin.ModelAdmin):
     ]
     ordering = ['標記者', 'id', ]
     list_filter = ['語料狀況', ]
+    readonly_fields = ['漢字', '羅馬字', ]
     search_fields = [
         'id', '漢字', '羅馬字', '詞性', '備註',
     ]
     list_per_page = 20
 
-#     readonly_fields = ('音檔', '頭一版資料',)
     fieldsets = (
         ('漢字', {
             'fields': ('漢字', '羅馬字', '詞性', '備註', ),
