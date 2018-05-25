@@ -6,6 +6,7 @@ python:
 env:
   matrix:
   - TOX_ENV=單元試驗
+  - TOX_ENV=匯新北市150句
   - TOX_ENV=flake8
 install:
 - pip install tox
