@@ -49,4 +49,4 @@ class 語料狀況表(models.Model):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return '{} {}'.format(self.pk, self.顯示名())
+        return '{} {}'.format(self.pk, self.狀況)
