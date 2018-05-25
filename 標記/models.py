@@ -8,7 +8,7 @@ class 語料表(models.Model):
     原本羅馬字 = models.TextField()
     漢字 = models.TextField()
     羅馬字 = models.TextField()
-    詞性 = models.TextField(null=True, blank=True)
+    詞性 = models.TextField(blank=True)
 
     備註 = models.TextField(blank=True)
     語料狀況 = models.ManyToManyField('語料狀況表', blank=True)
