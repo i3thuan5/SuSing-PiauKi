@@ -39,6 +39,7 @@ class 標記表管理(ReadOnlyAdminFields, admin.ModelAdmin):
     ]
     ordering = ['標記者', 'id', ]
     list_filter = ['語料狀況', ]
+    readonly_fields = ['漢字', '羅馬字', ]
     search_fields = [
         'id', '漢字', '羅馬字', '詞性', '備註',
     ]
