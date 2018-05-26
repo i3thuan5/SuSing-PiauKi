@@ -1,12 +1,8 @@
-import json
-from urllib.request import urlopen
-
 from django.core.management.base import BaseCommand
 from django.db.transaction import atomic
 from django.db.utils import IntegrityError
 
 
-from 標記.models import 語料表
 from 標記.models import 詞性表
 from 標記.台灣閩南語詞類標記TAICORP import 詞性表 as TAICORP詞性表
 
