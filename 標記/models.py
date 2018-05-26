@@ -50,3 +50,14 @@ class 語料狀況表(models.Model):
 
     def __str__(self):
         return '{} {}'.format(self.pk, self.狀況)
+
+
+class 詞性表(models.Model):
+    詞性 = models.CharField(unique=True, max_length=30)
+    華文解釋 = models.TextField(blank=True)
+    英文解釋 = models.TextField(blank=True)
+    備註 = models.TextField(blank=True)
+
+    @classmethod
+    def 全部(cls):
+        return cls.objects.values_list('詞性', flat=True).order_by('詞性')

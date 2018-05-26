@@ -11,10 +11,10 @@ from 標記.models import 語料表
 from 標記.管理.ReadOnlyAdminFields import ReadOnlyAdminFields
 from 提著詞性結果.views import 查教典詞性
 from 提著詞性結果.views import 查國教院詞性
-from 標記.台灣閩南語詞類標記TAICORP import 詞性種類
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 from 提著詞性結果.views import 物件查程式詞性
+from 標記.models import 詞性表
 
 
 class 標記表(語料表):
@@ -115,7 +115,7 @@ class 標記表管理(ReadOnlyAdminFields, admin.ModelAdmin):
             '國教院詞條': 國教院詞條,
             '國教院翻譯華語句': 翻譯華語句,
             '程式詞性': 程式詞性,
-            '詞性種類': 詞性種類,
+            '詞性種類': 詞性表.全部(),
             '預設詞性': 預設詞性,
         })
         return super(標記表管理, self).change_view(request, object_id, form_url, extra_context=extra_context)
