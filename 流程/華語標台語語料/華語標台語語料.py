@@ -14,7 +14,7 @@ if __name__ == '__main__':
         for 句物件 in 拆文分析器.分詞章物件(一句.rstrip()).內底句:
             try:
                 國教院詞性, _國教院詞條, _華語句 = 物件查國教院詞性(句物件)
-            except:
+            except Exception:
                 pass
             else:
                 句資料 = []
