@@ -8,7 +8,9 @@ from sys import stdin
 if __name__ == '__main__':
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "設定.settings")
     全部資料 = []
-    for 一句 in stdin.readlines():
+    for 第幾句, 一句 in enumerate(stdin.readlines()):
+        if 第幾句 % 100 == 0:
+            print('做第 {} 句'.format(第幾句))
         for 句物件 in 拆文分析器.分詞章物件(一句.rstrip()).內底句:
             try:
                 國教院詞性, _國教院詞條, _華語句 = 物件查國教院詞性(句物件)
