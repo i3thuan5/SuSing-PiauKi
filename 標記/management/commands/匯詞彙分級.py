@@ -32,22 +32,24 @@ class Command(BaseCommand):
         for 內容 in 資料['資料']:
             for 一句 in 內容['文章資料']:
                 if '分詞' in 一句 and 一句['漢字'].strip():
-                    這句 = (一句['漢字'], 一句['臺羅'])
+                    漢, 羅 = (一句['漢字'], 一句['臺羅'])
+                    這句 = 漢, 羅
                     if 這句 not in 有出現的資料:
-                        愛匯的資料.append(這句)
+                        愛匯的資料.append(
+                            語料表(
+                                原本漢字=漢, 原本羅馬字=羅
+                            )
+                        )
                         有出現的資料.add(這句)
         with atomic():
-            for 這句 in 愛匯的資料:
-                漢, 羅 = 這句
-                try:
-                    語料表.objects.create(
-                        原本漢字=漢, 原本羅馬字=羅
-                    )
-                except IntegrityError:
-                    print(
-                        '{} {} 可能匯過矣！'.format(一句['漢字'], 一句['臺羅']),
-                        file=self.stdout
-                    )
-                    raise
+            try:
+                語料表.objects.bulk_create(愛匯的資料)
+            except IntegrityError:
+                print(
+                    '{} {} 可能匯過矣！'.format(一句['漢字'], 一句['臺羅']),
+                    file=self.stdout
+                )
+                raise
 
         print('語料表數量：{}'.format(語料表.objects.count()), file=self.stdout)
+#         travis ci
