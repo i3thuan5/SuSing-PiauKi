@@ -52,4 +52,3 @@ class Command(BaseCommand):
                 raise
 
         print('語料表數量：{}'.format(語料表.objects.count()), file=self.stdout)
-#         travis ci
