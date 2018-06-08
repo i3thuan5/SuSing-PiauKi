@@ -1,7 +1,7 @@
-from 提著詞性結果.views import 物件查國教院詞性
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 import os
 from sys import stdin, stderr
+from 提著詞性結果.國教院 import 物件查國教院詞性
 
 
 def _main():
