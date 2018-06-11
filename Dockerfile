@@ -30,4 +30,5 @@ RUN python3 manage.py migrate
 RUN python3 manage.py 匯常見的語料狀況
 RUN python3 manage.py 匯TAICORP詞性
 RUN python3 manage.py 匯新北市150句
+RUN python3 manage.py 重算ppl 台語分詞.arpa
 RUN python3 manage.py collectstatic
