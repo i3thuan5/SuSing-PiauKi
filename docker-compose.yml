@@ -8,6 +8,7 @@ services:
       - huan1ik8
     volumes:
       - /usr/local/su5-sing3/tsu-liāu
+      - ./台語詞性.arpa:/usr/local/su5-sing3/台語詞性.arpa
     environment:
       VIRTUAL_HOST: "xn--w8tq35g.xn--v0qr21b.xn--kpry57d"
       VIRTUAL_PORT: 8000

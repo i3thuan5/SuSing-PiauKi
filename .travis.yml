@@ -17,6 +17,8 @@ install:
 branches:
   only:
   - master
+install:
+- pip install --upgrade https://github.com/i3thuan5/tai5-uan5_gian5-gi2_kang1-ku7/archive/master.zip
 script:
 - tox -e $TOX_ENV
 after_success:
