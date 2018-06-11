@@ -15,7 +15,6 @@ class 基礎句選擇表(語料表):
 
 
 class 基礎句選擇管理(ReadOnlyAdminFields, admin.ModelAdmin):
-    # change list
     list_display = [
         'id',
         '漢字', '羅馬字',
@@ -29,6 +28,13 @@ class 基礎句選擇管理(ReadOnlyAdminFields, admin.ModelAdmin):
         'id', '漢字', '羅馬字',
     ]
     list_per_page = 20
+
+    fieldsets = (
+        ('漢字', {
+            'fields': ('漢字', '羅馬字', '詞性', '備註', ),
+            'classes': ['wide']
+        }),
+    )
 
     def has_add_permission(self, request):
         # 薛：只能由程式上傳音檔和語料
