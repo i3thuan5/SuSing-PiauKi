@@ -16,7 +16,7 @@ class 基礎句選擇表(語料表):
 
 class 基礎句選擇管理(ReadOnlyAdminFields, admin.ModelAdmin):
     list_display = [
-        'id',
+        'id', '先標記無',
         '漢字', '羅馬字',
         '備註',
         'perplexity',
@@ -35,11 +35,18 @@ class 基礎句選擇管理(ReadOnlyAdminFields, admin.ModelAdmin):
             'classes': ['wide']
         }),
     )
+    actions = [
+        '這幾句先標記',
+        '這幾句先莫標記',
+    ]
+
+    def 這幾句先標記(self, request, queryset):
+        queryset.update(先標記無=True)
+
+    def 這幾句先莫標記(self, request, queryset):
+        queryset.update(先標記無=False)
 
     def has_add_permission(self, request):
-        # 薛：只能由程式上傳音檔和語料
-        # 薛：任何人都不能從後台新增
-        return True
         return False
 
     def has_delete_permission(self, request, obj=None):

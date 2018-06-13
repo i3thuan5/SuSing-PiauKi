@@ -14,6 +14,7 @@ class 語料表(models.Model):
     備註 = models.TextField(blank=True)
     語料狀況 = models.ManyToManyField('語料狀況表', blank=True)
 
+    先標記無 = models.BooleanField(default=False)
     標記者 = models.ForeignKey(
         User, null=True, related_name='+',  on_delete=models.CASCADE
     )

@@ -106,3 +106,4 @@ ENV/
 /kiat4-ko2*
 /db.sqlite3
 /whitenoise_static
+*arpa.gz
