@@ -32,12 +32,12 @@ class 標記表(語料表):
 class 標記表管理(ReadOnlyAdminFields, admin.ModelAdmin):
     # change list
     list_display = [
-        'id', '狀況',
+        'id', '先標記無', '狀況',
         '漢字', '羅馬字', '詞性',
         '備註',
-        '標記者', '標記時間',
+        '標記時間',
     ]
-    ordering = ['標記者', 'id', ]
+    ordering = ['-先標記無', '標記者', 'id', ]
     list_filter = ['語料狀況', ]
     readonly_fields = ['漢字', '羅馬字', ]
     search_fields = [
@@ -72,9 +72,6 @@ class 標記表管理(ReadOnlyAdminFields, admin.ModelAdmin):
         super(標記表管理, self).save_model(request, obj, form, change)
 
     def has_add_permission(self, request):
-        # 薛：只能由程式上傳音檔和語料
-        # 薛：任何人都不能從後台新增
-        return True
         return False
 
     def has_delete_permission(self, request, obj=None):

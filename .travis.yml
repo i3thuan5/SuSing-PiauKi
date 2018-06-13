@@ -6,7 +6,7 @@ python:
 env:
   matrix:
   - TOX_ENV=單元試驗
-  - TOX_ENV=匯新北市150句
+  - TOX_ENV=匯新北市150句閣ppl
   - TOX_ENV=匯常見的語料狀況
   - TOX_ENV=匯TAICORP詞性
   - TOX_ENV=匯詞彙分級
@@ -14,6 +14,7 @@ env:
 install:
 - pip install tox
 - pip install python-coveralls
+- pip install --upgrade https://github.com/i3thuan5/tai5-uan5_gian5-gi2_kang1-ku7/archive/master.zip
 branches:
   only:
   - master
