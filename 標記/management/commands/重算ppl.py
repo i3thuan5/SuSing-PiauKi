@@ -1,10 +1,7 @@
-from http.client import HTTPSConnection
-import json
 import ssl
 
 from django.core.management.base import BaseCommand
 from django.db.transaction import atomic
-from django.db.utils import IntegrityError
 
 
 from 標記.models import 語料表
@@ -22,7 +19,7 @@ class Command(BaseCommand):
         parser.add_argument(
             'arpa',
             type=str,
-            
+
         )
 
     def handle(self, *args, **參數):
