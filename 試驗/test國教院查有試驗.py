@@ -1,8 +1,10 @@
 from unittest.mock import patch
 
 from django.test.testcases import TestCase
-from 提著詞性結果.views import 物件查國教院詞性
+
+
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
+from 提著詞性結果.國教院 import 物件查國教院詞性
 
 
 class 查詞性(TestCase):

@@ -10,11 +10,11 @@ from django.utils.timezone import now
 from 標記.models import 語料表
 from 標記.管理.ReadOnlyAdminFields import ReadOnlyAdminFields
 from 提著詞性結果.views import 查教典詞性
-from 提著詞性結果.views import 查國教院詞性
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
 from 提著詞性結果.views import 物件查程式詞性
 from 標記.models import 詞性表
+from 提著詞性結果.國教院 import 查國教院詞性
 
 
 class 標記表(語料表):
