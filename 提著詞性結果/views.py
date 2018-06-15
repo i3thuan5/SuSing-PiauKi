@@ -3,15 +3,12 @@ import json
 import ssl
 from urllib.parse import quote
 
-from django.conf import settings
 from django.http.response import JsonResponse
 from django.shortcuts import render
 
 
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
-from 臺灣言語工具.翻譯.摩西工具.語句編碼器 import 語句編碼器
-from 臺灣言語工具.翻譯.摩西工具.摩西用戶端 import 摩西用戶端
 from 標記.models import 詞性表
 from 提著詞性結果.國教院 import 查國教院詞性
 

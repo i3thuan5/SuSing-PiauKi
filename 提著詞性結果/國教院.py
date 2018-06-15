@@ -3,6 +3,8 @@ from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 im
 from django.conf import settings
 from 臺灣言語工具.翻譯.摩西工具.摩西用戶端 import 摩西用戶端
 from 臺灣言語工具.翻譯.摩西工具.語句編碼器 import 語句編碼器
+
+
 def 查國教院詞性(漢字, 羅馬字):
     句物件 = (
         拆文分析器
