@@ -5,7 +5,7 @@ from django.db import migrations, models
 
 def _加來源(apps, schema_editor):
     語料表 = apps.get_model("標記", "語料表")
-    語料表.objects.filter(pk__le=150).update(來源='新北市例句')
+    語料表.objects.filter(pk__lte=150).update(來源='新北市例句')
     語料表.objects.filter(pk__gt=150).update(來源='詞彙分級')
 
 class Migration(migrations.Migration):
