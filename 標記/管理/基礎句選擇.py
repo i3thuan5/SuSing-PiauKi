@@ -17,6 +17,7 @@ class 基礎句選擇表(語料表):
 class 基礎句選擇管理(ReadOnlyAdminFields, admin.ModelAdmin):
     list_display = [
         'id', '先標記無',
+        '來源',
         '漢字', '羅馬字',
         '備註',
         'perplexity',

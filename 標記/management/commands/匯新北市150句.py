@@ -25,7 +25,8 @@ class Command(BaseCommand):
                 if int(編號) <= 150:
                     try:
                         語料表.objects.create(
-                            原本漢字=內容['例句漢字'], 原本羅馬字=內容['例句臺羅']
+                            原本漢字=內容['例句漢字'], 原本羅馬字=內容['例句臺羅'],
+                            來源='新北市例句',
                         )
                     except IntegrityError:
                         print('可能匯過矣！', file=self.stdout)
