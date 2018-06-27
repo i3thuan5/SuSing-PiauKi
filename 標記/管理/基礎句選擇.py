@@ -22,13 +22,13 @@ class 基礎句選擇管理(ReadOnlyAdminFields, admin.ModelAdmin):
         '備註',
         'perplexity',
     ]
-    ordering = ['-perplexity', 'id', ]
+    ordering = ['perplexity', 'id', ]
     list_filter = ['語料狀況', ]
     readonly_fields = ['漢字', '羅馬字', ]
     search_fields = [
         'id', '漢字', '羅馬字',
     ]
-    list_per_page = 20
+    list_per_page = 1000
 
     fieldsets = (
         ('漢字', {

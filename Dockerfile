@@ -12,8 +12,7 @@ ENV LC_ALL zh_TW.UTF-8
 RUN apt-get install -y python3-pip
 RUN pip3 install --upgrade pip
 RUN pip3 install Django whitenoise gunicorn
-RUN pip3 install tai5-uan5_gian5-gi2_kang1-ku7
-RUN pip3 install --upgrade https://github.com/i3thuan5/tai5-uan5_gian5-gi2_kang1-ku7/archive/master.zip
+RUN pip3 install tai5-uan5_gian5-gi2_kang1-ku7==0.6.43
 
 EXPOSE 8000
 
