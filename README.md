@@ -9,6 +9,13 @@
 docker-compose up --build
 ```
 
+加登入網站用的數號、密碼
+
+```
+docker exec -ti su5-sing3_gunicorn_1 /bin/bash 
+python3 manage.py createsuperuser
+```
+
 ## 其他
 ```
 time docker build -t su5-sing3 .
