@@ -8,7 +8,6 @@ from django.utils.timezone import now
 
 
 from 標記.models import 語料表
-from 標記.管理.ReadOnlyAdminFields import ReadOnlyAdminFields
 from 提著詞性結果.views import 查教典詞性
 from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 from 臺灣言語工具.音標系統.閩南語.臺灣閩南語羅馬字拼音 import 臺灣閩南語羅馬字拼音
@@ -29,7 +28,7 @@ class 標記表(語料表):
         verbose_name_plural = verbose_name
 
 
-class 標記表管理(ReadOnlyAdminFields, admin.ModelAdmin):
+class 標記表管理(admin.ModelAdmin):
     # change list
     list_display = [
         'id', '先標記無', '狀況',
