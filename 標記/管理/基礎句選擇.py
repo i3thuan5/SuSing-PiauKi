@@ -23,7 +23,7 @@ class 基礎句選擇管理(admin.ModelAdmin):
         'perplexity',
     ]
     ordering = ['perplexity', 'id', ]
-    list_filter = ['語料狀況', ]
+    list_filter = ['語料狀況', '先標記無', ]
     readonly_fields = ['漢字', '羅馬字', ]
     search_fields = [
         'id', '漢字', '羅馬字',
