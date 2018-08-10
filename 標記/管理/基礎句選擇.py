@@ -3,7 +3,7 @@ from django.contrib import admin
 
 
 from 標記.models import 語料表
-from 標記.管理.ReadOnlyAdminFields import ReadOnlyAdminFields
+# from 標記.管理.ReadOnlyAdminFields import ReadOnlyAdminFields
 
 
 class 基礎句選擇表(語料表):
@@ -14,7 +14,7 @@ class 基礎句選擇表(語料表):
         verbose_name_plural = verbose_name
 
 
-class 基礎句選擇管理(ReadOnlyAdminFields, admin.ModelAdmin):
+class 基礎句選擇管理(admin.ModelAdmin):
     list_display = [
         'id', '先標記無',
         '來源',
