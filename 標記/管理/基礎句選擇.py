@@ -1,9 +1,5 @@
-
 from django.contrib import admin
-
-
 from 標記.models import 語料表
-# from 標記.管理.ReadOnlyAdminFields import ReadOnlyAdminFields
 
 
 class 基礎句選擇表(語料表):
@@ -28,7 +24,7 @@ class 基礎句選擇管理(admin.ModelAdmin):
     search_fields = [
         'id', '漢字', '羅馬字',
     ]
-    list_per_page = 1000
+    list_per_page = 20
 
     fieldsets = (
         ('漢字', {
@@ -40,6 +36,8 @@ class 基礎句選擇管理(admin.ModelAdmin):
         '這幾句先標記',
         '這幾句先莫標記',
     ]
+    
+    change_list_template = 'admin/標記/ki1_tshoo2_ku3_change_list.html'
 
     def 這幾句先標記(self, request, queryset):
         queryset.update(先標記無=True)

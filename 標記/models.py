@@ -20,7 +20,8 @@ class 語料表(models.Model):
         User, null=True, related_name='+',  on_delete=models.CASCADE
     )
     標記時間 = models.DateTimeField(null=True)
-
+    揀的時間 = models.DateTimeField(null=True)
+    
     class Meta:
         verbose_name = "語料表"
         verbose_name_plural = verbose_name
