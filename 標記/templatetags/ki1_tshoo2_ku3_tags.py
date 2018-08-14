@@ -16,7 +16,17 @@ def 總共幾句():
 
 
 def _揀的最新一句():
-    編號 = 語料表.objects.filter(先標記無=True).order_by('揀的時間','-id')[0]
+    try:
+        編號 = 語料表.objects.filter(
+                先標記無=True
+            ).exclude(
+                揀的時間__isnull=True
+            ).order_by(
+                '-id'
+            ).first().id
+    except AttributeError:
+        # 掠無編號
+        編號 = 0 
     return 編號 
 
 
