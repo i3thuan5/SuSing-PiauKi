@@ -42,11 +42,9 @@ class 基礎句選擇管理(admin.ModelAdmin):
     change_list_template = 'admin/標記/ki1_tshoo2_ku3_change_list.html'
 
     def 這幾句先標記(self, request, queryset):
-        print('先標記=', queryset.count())
         queryset.update(揀的時間=now(), 先標記無=True)
 
     def 這幾句先莫標記(self, request, queryset):
-        print('先莫標記=', queryset.count())
         queryset.update(揀的時間=now(), 先標記無=False)
 
     def has_add_permission(self, request):

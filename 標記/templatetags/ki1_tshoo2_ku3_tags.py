@@ -17,9 +17,7 @@ def 總共幾句():
 
 def _揀的最新一句():
     try:
-        編號 = 語料表.objects.filter(
-                先標記無=True
-            ).exclude(
+        編號 = 語料表.objects.exclude(
                 揀的時間__isnull=True
             ).order_by(
                 '-id'
@@ -31,6 +29,6 @@ def _揀的最新一句():
 
 
 def 揀的最新一句佇to一頁():
-    編號 = 語料表.objects.filter(先標記無=True).latest('揀的時間').id
+    編號 = _揀的最新一句()
     頁號 = 編號 / 20
     return 頁號
