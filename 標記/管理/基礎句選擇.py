@@ -1,9 +1,6 @@
-
 from django.contrib import admin
-
-
 from 標記.models import 語料表
-# from 標記.管理.ReadOnlyAdminFields import ReadOnlyAdminFields
+from django.utils.timezone import now
 
 
 class 基礎句選擇表(語料表):
@@ -19,20 +16,20 @@ class 基礎句選擇管理(admin.ModelAdmin):
         'id', '先標記無',
         '來源',
         '漢字', '羅馬字',
+        '揀的時間',
         '備註',
-        'perplexity',
     ]
-    ordering = ['perplexity', 'id', ]
+    ordering = ['id', ]
     list_filter = ['語料狀況', '先標記無', ]
     readonly_fields = ['漢字', '羅馬字', ]
     search_fields = [
         'id', '漢字', '羅馬字',
     ]
-    list_per_page = 1000
+    list_per_page = 20
 
     fieldsets = (
         ('漢字', {
-            'fields': ('漢字', '羅馬字', '詞性', '備註', ),
+            'fields': ('漢字', '羅馬字', '備註', ),
             'classes': ['wide']
         }),
     )
@@ -40,12 +37,14 @@ class 基礎句選擇管理(admin.ModelAdmin):
         '這幾句先標記',
         '這幾句先莫標記',
     ]
+    
+    change_list_template = 'admin/標記/ki1_tshoo2_ku3_change_list.html'
 
     def 這幾句先標記(self, request, queryset):
-        queryset.update(先標記無=True)
+        queryset.update(揀的時間=now(), 先標記無=True)
 
     def 這幾句先莫標記(self, request, queryset):
-        queryset.update(先標記無=False)
+        queryset.update(揀的時間=now(), 先標記無=False)
 
     def has_add_permission(self, request):
         return False
