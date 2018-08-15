@@ -1,13 +1,14 @@
 {% extends "admin/change_list.html" %}
 {% load i18n admin_list %}
-{% load 揀的最新一句 總共幾句 from ki1_tshoo2_ku3_tags %}
+{% load 揀的最新一句 揀的頁數 總共幾句 from ki1_tshoo2_ku3_tags %}
 
 {% block filters %}
  	{% if cl.has_filters %}
     	<div id="changelist-filter">
     		<h2>{% trans 'Filter' %}</h2>
         	<h3>{% now "Y\.n\.j H:i" %}</h3>
-        	<h3>揀的最新一句：{% 揀的最新一句 %}</h3>
+        	<h3>最新一句：{% 揀的最新一句 %}</h3>
+        	<h3>最新頁數：第{% 揀的頁數 %}頁</h3>
         	<h3>總共幾句：{% 總共幾句 %}</h3>
     		{% for spec in cl.filter_specs %}{% admin_list_filter cl spec %}{% endfor %}
         </div>

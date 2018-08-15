@@ -14,13 +14,12 @@ class 基礎句選擇表(語料表):
 class 基礎句選擇管理(admin.ModelAdmin):
     list_display = [
         'id', '先標記無',
-        '揀的時間',
         '來源',
         '漢字', '羅馬字',
+        '揀的時間',
         '備註',
-        'perplexity',
     ]
-    ordering = ['perplexity', 'id', ]
+    ordering = ['id', ]
     list_filter = ['語料狀況', '先標記無', ]
     readonly_fields = ['漢字', '羅馬字', ]
     search_fields = [
@@ -30,7 +29,7 @@ class 基礎句選擇管理(admin.ModelAdmin):
 
     fieldsets = (
         ('漢字', {
-            'fields': ('漢字', '羅馬字', '詞性', '備註', ),
+            'fields': ('漢字', '羅馬字', '備註', ),
             'classes': ['wide']
         }),
     )

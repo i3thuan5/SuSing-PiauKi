@@ -3,6 +3,7 @@ from 標記.管理.基礎句選擇 import 基礎句選擇表
 from 標記.templatetags.ki1_tshoo2_ku3_tags import _揀的最新一句
 from 標記.管理.基礎句選擇 import 基礎句選擇管理
 from django.contrib.admin.sites import AdminSite
+from 標記.templatetags.ki1_tshoo2_ku3_tags import _揀的頁數
 
 
 class 基礎句選擇Tag單元試驗(TestCase):
@@ -68,3 +69,10 @@ class 基礎句選擇Tag單元試驗(TestCase):
         queryset = 基礎句選擇表.objects.filter(pk__in=[3])
         self.app_admin.這幾句先莫標記(None, queryset)
         self.assertEqual(_揀的最新一句(), 3)
+
+    def test頁數_id是21在第二頁(self):
+        for 資料 in range(33):
+            基礎句選擇表.objects.create(原本漢字=資料, 原本羅馬字=資料, )
+        queryset = 基礎句選擇表.objects.filter(pk__in=[21])
+        self.app_admin.這幾句先標記(None, queryset)
+        self.assertEqual(_揀的頁數(), 2)
