@@ -1,3 +1,5 @@
+import csv
+
 from django.core.management.base import BaseCommand
 
 
@@ -41,7 +43,13 @@ class Command(BaseCommand):
     def handle(self, *args, **參數):
         詞性表.objects.all().delete()
 
-        for 詞 in sorted(self.詞性):
+        tsong = set()
+        with open('詞類比較.csv') as tong:
+            for 資料 in csv.reader(tong):
+                詞 = 資料[5].strip()
+                if 詞:
+                    tsong.add(詞)
+        for 詞 in sorted(tsong):
             詞性表.objects.create(詞性=詞)
 
         print('詞性數量：{}'.format(詞性表.objects.count()), file=self.stdout)
