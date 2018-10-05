@@ -45,7 +45,7 @@ class Command(BaseCommand):
 
         tsong = set()
         with open('詞類比較.csv') as tong:
-            for pit,資料 in enumerate(csv.reader(tong)):
+            for pit, 資料 in enumerate(csv.reader(tong)):
                 if pit == 0:
                     continue
                 詞 = 資料[5].strip()
