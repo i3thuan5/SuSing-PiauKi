@@ -1,0 +1,65 @@
+CKIP細詞類,蔡素娟,CKIP最粗詞類,楊允言,Chinnese PennTree,計劃最後分類
+Caa,Caa,C,C,CC,CONJ
+Cab,Cab,C,C,ETC,CONJ
+Cba,Cba,C,C,CS,C
+Cbaa,Cbb,C,C,CS,C
+Cbab,Cba,C,C,CS,C
+Cbba,Cbb,C,C,CS,C
+Cbbb,Cbb,C,C,CS,C
+Cbca,Cbb,C,C,CS,C
+Cbcb,Cbb,C,C,CS,C
+D*,D,D,D,AD,ADV
+Dab,Da,D,D,AD,ADV
+DE,DE,DE,N/A,"DEC, DEG, DER, DEV","MOD (< DEC, DEG) / EXT (< DER)"
+Dfa,Dfa,D,D,AD,ADV
+Dfb,Dfb,D,D,AD,ADV
+Dk,Dk,D,D,AD,ADV
+I,I,I,I,IJ,IJ
+Na*,Na,N,N,NN,N
+Nb*,Nb,N,N,NR,N
+Nc*,Nc,N,N,"NN, NR",N
+Ncd*,Ncd,Ncd,N,LC,LC
+Nd*,Nd,N,S,NT,NT
+Nep,Nep,Ne,N,DT,DET
+Neqa,Neqa,Ne,N,CD,QN
+Neqb,Neqb,Ne,N,CD,QN
+Nes,Nes,Ne,N,DT,DET
+Neu,Neu,Ne,N,CD,NUM
+Nf*,Nf,N,N,M,CL
+Ng,Ng,Ng,G,LC,LC
+Nh*,Nh,N,R,PN,PN
+Nv1,Nv,N,N,NN,N
+Nv2,Nv,N,N,NN,N
+Nv3,Nv,N,N,NN,N
+Nv4,Nv,N,N,NN,N
+P*,P,P,P,P,P
+T*,T,T,T,SP,PRT
+V_11,SHI,V,V,VC,COP
+V_12,SHI,V,V,VC,COP
+V_2,V_2,V,V,VE,EXIST
+VA*,VA,V,V,VV,V
+VA2,VAC,V,V,VV,V
+VB*,VB,V,V,VV,V
+VC1,VCL,V,V,VV,V
+VC*,VC,V,V,VV,V
+VD*,VD,V,V,VV,V
+VE*,VE,V,V,VV,V
+VF*,VF,V,V,VV,V
+VG*,VG,V,V,VV,V
+VH*,VH,V,A,VA,VA
+VH16,VHC,V,A,VA,VA
+VH22,VHC,V,A,VA,VA
+VI*,VI,V,V,VV,V
+VJ*,VJ,V,V,VV,V
+VK*,VK,V,V,VV,V
+VL*,VL,V,V,VV,V
+DM,DM,DM,N/A,QP,QP
+Di,Di,D,D,AS,ASP
+A,A,A,A,JJ,ADJ
+FW,FW,FW,FW,FW,FW
+PUNC,PUNC,PUNC,PUNC,PUNC,PUNC
+,,,,BA,P
+,,,,"LB, SB","HOO, KHI-HOO (予, 去予)"
+,,,,,Á (仔)
+,,,,,WH
+,,,,,NEG
