@@ -21,7 +21,7 @@ class 語料表(models.Model):
     )
     標記時間 = models.DateTimeField(null=True)
     揀的時間 = models.DateTimeField(null=True)
-    
+
     class Meta:
         verbose_name = "語料表"
         verbose_name_plural = verbose_name
@@ -61,6 +61,10 @@ class 詞性表(models.Model):
     華文解釋 = models.TextField(blank=True)
     英文解釋 = models.TextField(blank=True)
     備註 = models.TextField(blank=True)
+
+    class Meta:
+        verbose_name = "詞性表"
+        verbose_name_plural = verbose_name
 
     @classmethod
     def 全部(cls):
