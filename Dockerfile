@@ -19,7 +19,7 @@ EXPOSE 8000
 RUN mkdir /usr/local/su5-sing3
 WORKDIR /usr/local/su5-sing3
 COPY . .
-RUN mkdir tsu-liāu
+RUN mkdir -p tsu-liāu
 RUN sed "s/os.path.join(BASE_DIR, 'db.sqlite3')/os.path.join(BASE_DIR, 'tsu-liāu', 'db.sqlite3')/g" -i 設定/settings.py 
 RUN python3 manage.py 教典造字表匯入
 RUN python3 manage.py 教典詞性匯入
