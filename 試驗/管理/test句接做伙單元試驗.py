@@ -1,6 +1,7 @@
 from django.core.exceptions import SuspiciousOperation
 from django.test.testcases import TestCase
 from 標記.管理.基礎句選擇 import 基礎句選擇表
+from 臺灣言語工具.解析整理.拆文分析器 import 拆文分析器
 
 
 class 句接做伙試驗(TestCase):
@@ -24,7 +25,11 @@ class 句接做伙試驗(TestCase):
     def test_羅數量是著的(self):
         基礎句選擇表.kap(self.tsuan)
         self.assertEqual(
-            len(基礎句選擇表.objects.get(pk=self.it.pk)),
+            len(
+                拆文分析器.建立句物件(
+                    基礎句選擇表.objects.get(pk=self.it.pk).羅馬字
+                ).篩出字物件()
+            ),
             18
         )
 
@@ -37,6 +42,13 @@ class 句接做伙試驗(TestCase):
                 'Guá tsiū siūnn-kóng: '
                 'mai2 tshut-mn̂g hó--ah'
             )
+        )
+
+    def test_頭一句的漢字是三句原本內容接做伙(self):
+        基礎句選擇表.kap(self.tsuan)
+        self.assertEqual(
+            基礎句選擇表.objects.get(pk=self.it.pk).漢字,
+            '因為今仔日落雨，我就想講：莫出門好矣'
         )
 
     def test_頭一句有揀(self):
