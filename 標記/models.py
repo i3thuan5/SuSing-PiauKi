@@ -58,7 +58,11 @@ class 語料表(models.Model):
         for ku in queryset.order_by('pk'):
             if tingtsite is not None:
                 if tingtsite + 1 != ku.pk:
-                    raise SuspiciousOperation('無連號!')
+                    raise SuspiciousOperation(
+                        '愛kap愛連號！選的是：{}'.format(
+                            queryset.order_by('pk').values_list(flat=True)
+                        )
+                    )
             tingtsite = ku.pk
             guanhan.append(ku.原本漢字)
             guanlo.append(ku.原本羅馬字)

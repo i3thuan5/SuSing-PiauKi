@@ -21,7 +21,7 @@ class 基礎句選擇管理(admin.ModelAdmin):
     ]
     ordering = ['id', ]
     list_filter = ['語料狀況', '先標記無', ]
-#     readonly_fields = ['漢字', '羅馬字', ]
+    readonly_fields = ['漢字', ]
     search_fields = [
         'id', '漢字', '羅馬字',
     ]
@@ -36,6 +36,7 @@ class 基礎句選擇管理(admin.ModelAdmin):
     actions = [
         '這幾句先標記',
         '這幾句先莫標記',
+        '這幾句kap做伙',
     ]
 
     change_list_template = 'admin/標記/ki1_tshoo2_ku3_change_list.html'
@@ -45,6 +46,9 @@ class 基礎句選擇管理(admin.ModelAdmin):
 
     def 這幾句先莫標記(self, request, queryset):
         queryset.update(揀的時間=now(), 先標記無=False)
+
+    def 這幾句kap做伙(self, request, queryset):
+        self.model.kap(queryset)
 
     def has_add_permission(self, request):
         return False
