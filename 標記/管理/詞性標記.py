@@ -120,7 +120,6 @@ class 標記表管理(admin.ModelAdmin):
         except 解析錯誤:
             Hantng = len(拆文分析器.建立句物件(漢字).篩出字物件())
             Lotng = len(拆文分析器.建立句物件(羅馬字).篩出字物件())
-            print(物件.詞性)
             try:
                 預設詞性 = json.loads(物件.詞性)
             except JSONDecodeError:
