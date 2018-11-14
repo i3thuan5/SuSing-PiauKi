@@ -101,10 +101,10 @@ class 標記表管理(admin.ModelAdmin):
                 預設詞性 = json.loads(物件.詞性)
             except JSONDecodeError:
                 預設詞性 = 程式詞性
-            if len(預設詞性)>len(程式詞性):
-                預設詞性=預設詞性[:len(程式詞性)]
-            if len(預設詞性)<len(程式詞性):
-                預設詞性+=程式詞性[len(預設詞性)-len(程式詞性):]
+            if len(預設詞性) > len(程式詞性):
+                預設詞性 = 預設詞性[:len(程式詞性)]
+            if len(預設詞性) < len(程式詞性):
+                預設詞性 += 程式詞性[len(預設詞性) - len(程式詞性):]
             extra_context.update({
                 '漢': 漢,
                 '羅': 羅,
