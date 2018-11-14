@@ -2,7 +2,7 @@ import json
 from json.decoder import JSONDecodeError
 
 from django.db import models
-from django.forms.widgets import CheckboxSelectMultiple, Textarea
+from django.forms.widgets import CheckboxSelectMultiple, TextInput
 from django.utils.timezone import now
 
 
@@ -61,10 +61,7 @@ class 標記表管理(語料表管理):
     # 文字欄位顯示從textarea改成input
     # 多對多欄位改用複選
     formfield_overrides = {
-        models.TextField: {'widget': Textarea(attrs={
-            'rows': 2,
-            'column': 40,
-            'style': 'resize: none; min-width: 80%; overflow:hidden;'})},
+        models.TextField: {'widget':  TextInput(attrs={'size': 120})},
         models.ManyToManyField: {'widget': CheckboxSelectMultiple},
     }
 
