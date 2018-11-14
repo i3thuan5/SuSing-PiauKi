@@ -31,7 +31,6 @@ class 標記表(語料表):
 
 
 class 標記表管理(語料表管理):
-    # change list
     list_display = [
         'id', '先標記無', '狀況',
         '漢字', '羅馬字', '詞性',
@@ -42,6 +41,11 @@ class 標記表管理(語料表管理):
     search_fields = [
         'id', '漢字', '羅馬字', '詞性', '備註',
     ]
+
+    # change view
+    # venv/lib/python3.5/site-packages/django/contrib/admin/templates/admin/
+#     change_list_template = 'admin/custom_change_list.html'
+    change_form_template = 'admin/標記/custom_change_form.html'
 
     fieldsets = (
         ('漢字', {
@@ -64,15 +68,14 @@ class 標記表管理(語料表管理):
         models.ManyToManyField: {'widget': CheckboxSelectMultiple},
     }
 
+    actions = [
+        '這幾句kap做伙',
+    ]
+
     def save_model(self, request, obj, form, change):
         # 儲存標記者
         obj.標記者 = request.user
         super(標記表管理, self).save_model(request, obj, form, change)
-
-    # change view
-    # venv/lib/python3.5/site-packages/django/contrib/admin/templates/admin/
-#     change_list_template = 'admin/custom_change_list.html'
-    change_form_template = 'admin/標記/custom_change_form.html'
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
