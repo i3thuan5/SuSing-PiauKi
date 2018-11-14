@@ -1,7 +1,6 @@
 import json
 from json.decoder import JSONDecodeError
 
-from django.contrib import admin
 from django.db import models
 from django.forms.widgets import CheckboxSelectMultiple, Textarea
 from django.utils.timezone import now
@@ -16,6 +15,7 @@ from 標記.models import 詞性表
 from 提著詞性結果.國教院 import 查國教院詞性
 from 標記.管理.ckip2keue import 對應表
 from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
+from 標記.管理.語料表管理 import 語料表管理
 
 
 class 標記表(語料表):
@@ -30,8 +30,7 @@ class 標記表(語料表):
         verbose_name_plural = verbose_name
 
 
-class 標記表管理(admin.ModelAdmin):
-    # change list
+class 標記表管理(語料表管理):
     list_display = [
         'id', '先標記無', '狀況',
         '漢字', '羅馬字', '詞性',
@@ -39,12 +38,14 @@ class 標記表管理(admin.ModelAdmin):
         '標記時間',
     ]
     ordering = ['-先標記無', '標記者', 'id', ]
-    list_filter = ['語料狀況', '先標記無', ]
-    readonly_fields = ['漢字', ]
     search_fields = [
         'id', '漢字', '羅馬字', '詞性', '備註',
     ]
-    list_per_page = 20
+
+    # change view
+    # venv/lib/python3.5/site-packages/django/contrib/admin/templates/admin/
+#     change_list_template = 'admin/custom_change_list.html'
+    change_form_template = 'admin/標記/custom_change_form.html'
 
     fieldsets = (
         ('漢字', {
@@ -67,26 +68,14 @@ class 標記表管理(admin.ModelAdmin):
         models.ManyToManyField: {'widget': CheckboxSelectMultiple},
     }
 
+    actions = [
+        '這幾句kap做伙',
+    ]
+
     def save_model(self, request, obj, form, change):
         # 儲存標記者
         obj.標記者 = request.user
         super(標記表管理, self).save_model(request, obj, form, change)
-
-    def has_add_permission(self, request):
-        return False
-
-    def has_delete_permission(self, request, obj=None):
-        return False
-
-    # change view
-    # venv/lib/python3.5/site-packages/django/contrib/admin/templates/admin/
-#     change_list_template = 'admin/custom_change_list.html'
-    change_form_template = 'admin/標記/custom_change_form.html'
-
-    class Media:
-        css = {
-            "all": ("css/admin_gi2_liau7_pio2.css", "css/moedictFont.css")
-        }
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}

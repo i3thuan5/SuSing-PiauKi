@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.core.exceptions import SuspiciousOperation
 from django.db import models
 from django.db.models.signals import post_save
 
@@ -42,6 +43,38 @@ class 語料表(models.Model):
         for 狀況 in self.語料狀況.order_by('id'):
             陣列.append(str(狀況.id))
         return ', '.join(陣列)
+
+    @classmethod
+    def kap(cls, queryset):
+        queryset.update(先標記無=False)
+        thau = queryset.order_by('pk').first()
+        thau.先標記無 = True
+        thau.save()
+        tingtsite = None
+        guanhan = []
+        guanlo = []
+        sinhan = []
+        sinlo = []
+        for ku in queryset.order_by('pk'):
+            if tingtsite is not None:
+                if tingtsite + 1 != ku.pk:
+                    raise SuspiciousOperation(
+                        '愛kap愛連號！選的是：{}'.format(
+                            queryset.order_by('pk').values_list(flat=True)
+                        )
+                    )
+            tingtsite = ku.pk
+            guanhan.append(ku.原本漢字)
+            guanlo.append(ku.原本羅馬字)
+            sinhan.append(ku.漢字)
+            sinlo.append(ku.羅馬字)
+        thau.原本漢字 = ''.join(guanhan)
+        thau.原本羅馬字 = ' '.join(guanlo)
+        thau.漢字 = ''.join(sinhan)
+        thau.羅馬字 = ' '.join(sinlo)
+        thau.save()
+
+        pass
 
 
 class 語料狀況表(models.Model):
