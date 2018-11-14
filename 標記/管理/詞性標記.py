@@ -15,6 +15,7 @@ from 提著詞性結果.views import 物件查程式詞性
 from 標記.models import 詞性表
 from 提著詞性結果.國教院 import 查國教院詞性
 from 標記.管理.ckip2keue import 對應表
+from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
 
 
 class 標記表(語料表):
@@ -92,6 +93,46 @@ class 標記表管理(admin.ModelAdmin):
         物件 = self.get_queryset(request).get(id=object_id)
         漢字 = 物件.漢字
         羅馬字 = 物件.羅馬字
+        try:
+            漢, 羅, 性, 國教院詞性, 國教院詞條, 翻譯華語句, 原程式詞性, 程式詞性 = self.tshue_susing(
+                漢字, 羅馬字
+            )
+            try:
+                預設詞性 = json.loads(物件.詞性)
+            except JSONDecodeError:
+                預設詞性 = 程式詞性
+            if len(預設詞性)>len(程式詞性):
+                預設詞性=預設詞性[:len(程式詞性)]
+            if len(預設詞性)<len(程式詞性):
+                預設詞性+=程式詞性[len(預設詞性)-len(程式詞性):]
+            extra_context.update({
+                '漢': 漢,
+                '羅': 羅,
+                '性': 性,
+                '國教院詞性': 國教院詞性,
+                '國教院詞條': 國教院詞條,
+                '國教院翻譯華語句': 翻譯華語句,
+                '原程式詞性': 原程式詞性,
+                '程式詞性': 程式詞性,
+                '詞性種類': 詞性表.全部(),
+                '預設詞性': 預設詞性,
+            })
+        except 解析錯誤:
+            Hantng = len(拆文分析器.建立句物件(漢字).篩出字物件())
+            Lotng = len(拆文分析器.建立句物件(羅馬字).篩出字物件())
+            print(物件.詞性)
+            try:
+                預設詞性 = json.loads(物件.詞性)
+            except JSONDecodeError:
+                預設詞性 = []
+            extra_context.update({
+                '錯誤資訊': '漢、羅長度無仝！漢字加標點數量：{}，羅馬字加標點數量：{}'.format(Hantng, Lotng),
+                '詞性種類': 詞性表.全部(),
+                '預設詞性': 預設詞性,
+            })
+        return super(標記表管理, self).change_view(request, object_id, form_url, extra_context=extra_context)
+
+    def tshue_susing(self, 漢字, 羅馬字):
         漢, 羅, 性 = 查教典詞性(漢字, 羅馬字)
         句物件 = (
             拆文分析器
@@ -103,20 +144,4 @@ class 標記表管理(admin.ModelAdmin):
         程式詞性 = []
         for su in 原程式詞性:
             程式詞性.append(對應表[su])
-        try:
-            預設詞性 = json.loads(物件.詞性)
-        except JSONDecodeError:
-            預設詞性 = 程式詞性
-        extra_context.update({
-            '漢': 漢,
-            '羅': 羅,
-            '性': 性,
-            '國教院詞性': 國教院詞性,
-            '國教院詞條': 國教院詞條,
-            '國教院翻譯華語句': 翻譯華語句,
-            '原程式詞性': 原程式詞性,
-            '程式詞性': 程式詞性,
-            '詞性種類': 詞性表.全部(),
-            '預設詞性': 預設詞性,
-        })
-        return super(標記表管理, self).change_view(request, object_id, form_url, extra_context=extra_context)
+        return 漢, 羅, 性, 國教院詞性, 國教院詞條, 翻譯華語句, 原程式詞性, 程式詞性
