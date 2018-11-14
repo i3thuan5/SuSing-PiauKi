@@ -11,6 +11,7 @@ def _sng():
             keue詞 = 資料[5].strip()
             if ckip詞:
                 tuiing[ckip詞] = keue詞
+    tuiing['DE'] = 'MOD'
     return tuiing
 
 
