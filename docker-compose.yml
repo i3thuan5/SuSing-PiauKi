@@ -4,19 +4,18 @@ services:
   gunicorn:
     build: .
     command: gunicorn 設定.wsgi --log-level debug -b 0.0.0.0:8000
-    ports:
-      - 8000:8000
     depends_on:
       - huan1ik8
     volumes:
-      - ./tsu-liāu:/usr/local/su5-sing3/tsu-liāu
+      - tsuliau:/usr/local/su5-sing3/tsu-liāu
       - ./台語詞性.arpa:/usr/local/su5-sing3/台語詞性.arpa
     environment:
-      VIRTUAL_HOST: "xn--w8tq35g.xn--v0qr21b.xn--kpry57d"
+      VIRTUAL_HOST: "xn--o22as9y.xn--v0qr21b.xn--kpry57d"
       VIRTUAL_PORT: 8000
   huan1ik8:
     image: i3thuan5/su5-sing3_tai5-hua5
 #    build: 流程/台華翻譯模型訓練
     command: /usr/local/lib/python3.5/dist-packages/外部程式/mosesdecoder/bin/mosesserver -f 服務資料/臺語/翻譯做外文模型/model/moses.ini
     restart: always
-
+volumes:
+  tsuliau:
