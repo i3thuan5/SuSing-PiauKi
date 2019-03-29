@@ -4,8 +4,6 @@ services:
   gunicorn:
     build: .
     command: gunicorn 設定.wsgi --log-level debug -b 0.0.0.0:8000
-    ports:
-      - 8000:8000
     depends_on:
       - huan1ik8
     volumes:
