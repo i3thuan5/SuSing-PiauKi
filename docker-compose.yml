@@ -9,6 +9,9 @@ services:
     volumes:
       - tsuliau:/usr/local/su5-sing3/tsu-liāu
       - ./台語詞性.arpa:/usr/local/su5-sing3/台語詞性.arpa
+    networks:
+      - default
+      - nginx-bridge
     environment:
       VIRTUAL_HOST: "xn--o22as9y.xn--v0qr21b.xn--kpry57d"
       VIRTUAL_PORT: 8000
@@ -19,3 +22,8 @@ services:
     restart: always
 volumes:
   tsuliau:
+
+networks:
+  nginx-bridge:
+    external: true
+

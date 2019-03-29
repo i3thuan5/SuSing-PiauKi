@@ -19,16 +19,16 @@ EXPOSE 8000
 RUN mkdir /usr/local/su5-sing3
 WORKDIR /usr/local/su5-sing3
 COPY . .
-RUN mkdir tsu-liāu
+RUN mkdir -p tsu-liāu
 RUN sed "s/os.path.join(BASE_DIR, 'db.sqlite3')/os.path.join(BASE_DIR, 'tsu-liāu', 'db.sqlite3')/g" -i 設定/settings.py 
 RUN python3 manage.py 教典造字表匯入
 RUN python3 manage.py 教典詞性匯入
 RUN echo TAI5TSUAN2HUA2 = \'huan1ik8\' >> 設定/settings.py
 
-RUN python3 manage.py migrate
-RUN python3 manage.py 匯常見的語料狀況
-RUN python3 manage.py 匯TAICORP詞性
+#RUN python3 manage.py migrate
+#RUN python3 manage.py 匯常見的語料狀況
+#RUN python3 manage.py 匯TAICORP詞性
 #RUN python3 manage.py 匯新北市150句
-RUN python3 manage.py 匯詞彙分級
-RUN python3 manage.py 重算ppl 台語分詞.arpa
+#RUN python3 manage.py 匯詞彙分級
+#RUN python3 manage.py 重算ppl 台語分詞.arpa
 RUN python3 manage.py collectstatic

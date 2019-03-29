@@ -1,6 +1,6 @@
-from django.contrib import admin
-from 標記.models import 語料表
 from django.utils.timezone import now
+from 標記.models import 語料表
+from 標記.管理.語料表管理 import 語料表管理
 
 
 class 基礎句選擇表(語料表):
@@ -11,7 +11,7 @@ class 基礎句選擇表(語料表):
         verbose_name_plural = verbose_name
 
 
-class 基礎句選擇管理(admin.ModelAdmin):
+class 基礎句選擇管理(語料表管理):
     list_display = [
         'id', '先標記無',
         '來源',
@@ -20,12 +20,9 @@ class 基礎句選擇管理(admin.ModelAdmin):
         '備註',
     ]
     ordering = ['id', ]
-    list_filter = ['語料狀況', '先標記無', ]
-    readonly_fields = ['漢字', '羅馬字', ]
     search_fields = [
         'id', '漢字', '羅馬字',
     ]
-    list_per_page = 20
 
     fieldsets = (
         ('漢字', {
@@ -36,8 +33,9 @@ class 基礎句選擇管理(admin.ModelAdmin):
     actions = [
         '這幾句先標記',
         '這幾句先莫標記',
+        '這幾句kap做伙',
     ]
-    
+
     change_list_template = 'admin/標記/ki1_tshoo2_ku3_change_list.html'
 
     def 這幾句先標記(self, request, queryset):
@@ -45,14 +43,3 @@ class 基礎句選擇管理(admin.ModelAdmin):
 
     def 這幾句先莫標記(self, request, queryset):
         queryset.update(揀的時間=now(), 先標記無=False)
-
-    def has_add_permission(self, request):
-        return False
-
-    def has_delete_permission(self, request, obj=None):
-        return False
-
-    class Media:
-        css = {
-            "all": ("css/admin_gi2_liau7_pio2.css", "css/moedictFont.css")
-        }
