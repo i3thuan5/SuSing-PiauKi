@@ -15,6 +15,7 @@ services:
     environment:
       VIRTUAL_HOST: "xn--o22as9y.xn--v0qr21b.xn--kpry57d"
       VIRTUAL_PORT: 8000
+    restart: always
   huan1ik8:
     image: i3thuan5/su5-sing3_tai5-hua5
 #    build: 流程/台華翻譯模型訓練
