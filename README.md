@@ -2,6 +2,8 @@
 [![Build Status](https://travis-ci.org/i3thuan5/su5-sing3.svg?branch=master)](https://travis-ci.org/i3thuan5/su5-sing3)
 [![Coverage Status](https://coveralls.io/repos/github/i3thuan5/su5-sing3/badge.svg?branch=master)](https://coveralls.io/github/i3thuan5/su5-sing3?branch=master)
 
+![頭頁](https://user-images.githubusercontent.com/5996555/187829644-e8ffaecd-7419-4f9d-8d49-1903ba310a33.png)
+
 台語詞性標記
 
 ## 走服務
