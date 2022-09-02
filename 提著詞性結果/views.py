@@ -111,7 +111,7 @@ def 查程式詞性(漢字, 羅馬字):
 
 
 def 物件查程式詞性(句物件):
-    conn = HTTPSConnection('xn--s-sng-vsa6h.xn--v0qr21b.xn--kpry57d')
+    conn = HTTPSConnection('susing.ithuan.tw')
     conn.request(
         "GET",
         '/{}'.format(
