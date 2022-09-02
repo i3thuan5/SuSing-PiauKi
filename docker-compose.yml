@@ -13,9 +13,9 @@ services:
       - default
       - nginx-bridge
     environment:
-      VIRTUAL_HOST: "xn--w8tq35g.xn--v0qr21b.xn--kpry57d"
-      LETSENCRYPT_HOST: "xn--w8tq35g.xn--v0qr21b.xn--kpry57d"
-      LETSENCRYPT_EMAIL: "ithuan@xn--v0qr21b.xn--kpry57d"
+      VIRTUAL_HOST: "sului-susing.ithuan.tw"
+      LETSENCRYPT_HOST: "sului-susing.ithuan.tw"
+      LETSENCRYPT_EMAIL: "ithuan@ithuan.tw"
     restart: always
   huan1ik8:
     image: i3thuan5/su5-sing3_tai5-hua5
